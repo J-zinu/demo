@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping
 @RequiredArgsConstructor
@@ -29,6 +31,23 @@ public class  MemberController {
         } else {
             return "redirect:/register";
         }
-
     }
+    @GetMapping("/login")
+    public String loginForm() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute MemberDTO memberDTO,
+                        HttpSession session) {
+       boolean loginResult = memberService.login(memberDTO);
+       if (loginResult) {
+              session.setAttribute("user_id", memberDTO.getUser_id());
+              return "/todoList/todoList";
+         } else {
+              return "login";
+       }
+    }
+
+
 }

@@ -1,3 +1,103 @@
+////plugins {
+////    id 'java'
+////    id 'war'
+////    id 'org.springframework.boot' version '2.7.13'
+////    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+////}
+////
+////group = 'com.example'
+////version = '0.0.1-SNAPSHOT'
+////
+////java {
+////    sourceCompatibility = '1.8'
+////}
+////
+////configurations {
+////    compileOnly {
+////        extendsFrom annotationProcessor
+////    }
+////}
+////
+////repositories {
+////    mavenCentral()
+////}
+////
+////// tomcat-embed-jasper, jstl 추가(JSP 사용을 위해)
+//////
+////dependencies {
+////
+////    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+////    implementation 'javax.servlet:jstl'
+////
+////    implementation 'org.springframework.boot:spring-boot-starter-web'
+////    compileOnly 'org.projectlombok:lombok'
+////    annotationProcessor 'org.projectlombok:lombok'
+////    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+////    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+////
+////    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+////    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+////    implementation 'org.mybatis:mybatis:3.5.7'
+////    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.0'
+////    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+////    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+////
+////
+////
+////
+////
+////}
+////
+////tasks.named('test') {
+////    useJUnitPlatform()
+////}
+//
+//plugins {
+//    id 'java'
+//    id 'war'
+//    id 'org.springframework.boot' version '2.7.13'
+//    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+//}
+//
+//group = 'com.example'
+//version = '0.0.1-SNAPSHOT'
+//
+//java {
+//    sourceCompatibility = '1.8'
+//}
+//
+//configurations {
+//    compileOnly {
+//        extendsFrom annotationProcessor
+//    }
+//}
+//
+//repositories {
+//    mavenCentral()
+//}
+//
+//// tomcat-embed-jasper, jstl 추가(JSP 사용을 위해)
+//dependencies {
+//    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+//    implementation 'javax.servlet:jstl'
+//
+//    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    compileOnly 'org.projectlombok:lombok'
+//    annotationProcessor 'org.projectlombok:lombok'
+//    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//
+//    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//    implementation 'org.mybatis:mybatis:3.5.7'
+//    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.0'
+//    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+//}
+//
+//tasks.named('test') {
+//    useJUnitPlatform()
+//}
 plugins {
     id 'java'
     id 'war'
@@ -23,9 +123,7 @@ repositories {
 }
 
 // tomcat-embed-jasper, jstl 추가(JSP 사용을 위해)
-//
 dependencies {
-
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'javax.servlet:jstl'
 
@@ -35,16 +133,12 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
-//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.0'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.1'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.mybatis:mybatis:3.5.7'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.1'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-
-
-
-
-
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
 }
 
 tasks.named('test') {

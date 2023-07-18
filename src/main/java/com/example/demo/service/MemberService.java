@@ -13,4 +13,14 @@ public class MemberService {
     public int register(MemberDTO memberDTO) {
         return memberRespository.register(memberDTO);
     }
+
+
+    public boolean login(MemberDTO memberDTO) {
+        MemberDTO loginMember = memberRespository.login(memberDTO);
+        if (loginMember != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -13,9 +13,4 @@ public class HomeController {
         return "test";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login"; // login.jsp 파일을 리턴
-    }
-
 }
