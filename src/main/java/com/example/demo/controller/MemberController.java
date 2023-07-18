@@ -43,7 +43,7 @@ public class  MemberController {
        boolean loginResult = memberService.login(memberDTO);
        if (loginResult) {
               session.setAttribute("user_id", memberDTO.getUser_id());
-              return "/todoList/todoList";
+              return "todoList";
          } else {
               return "login";
        }

@@ -20,7 +20,7 @@ public class TodoListController {
         System.out.println(session.getAttribute("user_id"));
         String user_id = (String) session.getAttribute("user_id");
         if(user_id == null){ return "redirect:/"; }
-        else{ return "/todoList/todoList"; }
+        else{ return "todoList"; }
     }
 
     @PostMapping("/todoList/create")
@@ -43,6 +43,6 @@ public class TodoListController {
 
     @GetMapping("/todoList_detail")
     public String TodoListDetail(){
-        return "/todoList/todoList_detail";
+        return "todoList_detail";
     }
 }

@@ -70,7 +70,7 @@
 <form method="post" action="/todoList/create">
     <h1>${sessionScope.user_id}님의 todoList</h1>
     <div name="top_content">
-        <input type="text" name="todo" />
+        <input type="text" name="todo" maxlength="30" required />
         <input type="submit" value="추가하기" />
     </div>
     <div name="mid_content">
