@@ -17,7 +17,6 @@ public class TodoListController {
 
     @GetMapping("/todoList")
     public String TodoList(HttpSession session){
-        System.out.println(session.getAttribute("user_id"));
         String user_id = (String) session.getAttribute("user_id");
         if(user_id == null){ return "redirect:/"; }
         else{ return "todoList"; }
@@ -31,8 +30,9 @@ public class TodoListController {
 
     @GetMapping("/todoList/get")
     @ResponseBody
-    public List<TodoListDTO> TodoListGet(){
-        return todoListMapper.getTodoList();
+    public List<TodoListDTO> TodoListGet(HttpSession session){
+        String user_id = (String) session.getAttribute("user_id");
+        return todoListMapper.getTodoList(user_id);
     }
 
     @GetMapping("/todoList/delete")
@@ -41,8 +41,8 @@ public class TodoListController {
         return "redirect:/todoList";
     }
 
-    @GetMapping("/todoList_detail")
-    public String TodoListDetail(){
-        return "todoList_detail";
-    }
+//    @GetMapping("/todoList_detail")
+//    public String TodoListDetail(){
+//        return "todoList_detail";
+//    }
 }

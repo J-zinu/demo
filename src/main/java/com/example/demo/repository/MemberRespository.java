@@ -4,6 +4,8 @@ import com.example.demo.dto.MemberDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.http.HttpSession;
+
 //@Repository //mybartis의 기능별 쿼리 정의
 //public class MemberRespository {
 //

@@ -34,7 +34,7 @@ public class  MemberController {
     }
     @GetMapping("/login")
     public String loginForm() {
-        return "login";
+        return "/login";
     }
 
     @PostMapping("/login")
@@ -43,10 +43,16 @@ public class  MemberController {
        boolean loginResult = memberService.login(memberDTO);
        if (loginResult) {
               session.setAttribute("user_id", memberDTO.getUser_id());
-              return "todoList";
+              return "redirect:/todoList";
          } else {
-              return "login";
+              return "/login";
        }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 
 

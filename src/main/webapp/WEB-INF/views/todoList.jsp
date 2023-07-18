@@ -42,14 +42,14 @@
                 var row = $('<tr>');
                 var todoCol = $('<td>').append(
                     $('<a>').attr({
-                        'href': '/todoList_detail?num=' + item.todo_num,
+                        // 'href': '/todoList_detail?num=' + item.todo_num,
                         'id' : 'todo'
                     }).html('&middot; ' + item.todo)
                 );
                 var functionCol = $('<td>').append(
                     $('<button>').attr({
                         'type': 'button',
-                        'id': 'delButton',
+                        'id': 'delBtn',
                         'data-todo-num': item.todo_num
                     }).text("삭제")
                 );
@@ -60,25 +60,31 @@
             });
         }
         // 삭제 버튼 클릭 이벤트 핸들러 등록
-        $(document).on('click', '#delButton', function() {
+        $(document).on('click', '#delBtn', function() {
             var todoNum = $(this).data('todo-num');
             location.href = "/todoList/delete?todo_num="+todoNum;
+        });
+
+        $(document).on('click', '#logoutBtn', function() {
+            location.href = "/logout";
         });
     </script>
 </head>
 <body>
 <form method="post" action="/todoList/create">
     <h1>${sessionScope.user_id}님의 todoList</h1>
+    <input type="button" id="logoutBtn"value="나가기">
     <div name="top_content">
         <input type="text" name="todo" maxlength="30" required />
+        <input type="hidden" name="user_id" value=${sessionScope.user_id} />
         <input type="submit" value="추가하기" />
     </div>
     <div name="mid_content">
         <table id="todoListTable">
             <thead>
                 <tr>
-                    <th>순번</th>
                     <th>제목</th>
+                    <th>기능</th>
                 </tr>
             </thead>
             <tbody>

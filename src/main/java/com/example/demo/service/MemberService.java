@@ -5,6 +5,8 @@ import com.example.demo.repository.MemberRespository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 @RequiredArgsConstructor // final 멤버 변수를 자동으로 생성 (생성자 주입) (lombok)
 public class MemberService {

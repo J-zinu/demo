@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface TodoListMapper {
-    List<TodoListDTO> getTodoList();
+    List<TodoListDTO> getTodoList(String user_id);
     void insertTodoList(TodoListDTO todoListDTO);
     void deleteTodoList(int todo_num);
 }
