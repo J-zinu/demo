@@ -2,11 +2,6 @@
 <html>
 <head>
     <title>Login</title>
-    <script>
-        function redirectToMain() {
-            window.location.href = "/main";
-        }
-    </script>
 </head>
 <body>
 <h1>로그인 페이지입니다.</h1>
