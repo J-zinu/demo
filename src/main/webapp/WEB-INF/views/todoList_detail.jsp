@@ -6,6 +6,6 @@
 </head>
 <body>
 <%--todoList_detail페이지입니다.<br/>--%>
-<a href="/todoList">todoList</a>
+<%--<a href="/todoList">todoList</a>--%>
 </body>
 </html>
