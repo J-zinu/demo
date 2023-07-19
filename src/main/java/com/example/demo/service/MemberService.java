@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.dto.MemberDTO;
 import com.example.demo.repository.MemberRespository;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -23,6 +24,15 @@ public class MemberService {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public String id_Check(String user_id) {
+        MemberDTO memberDTO = memberRespository.findById(user_id);
+        if (memberDTO != null) {
+            return "fail";
+        } else {
+            return "success";
         }
     }
 }

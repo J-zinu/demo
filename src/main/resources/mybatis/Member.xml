@@ -14,5 +14,7 @@
     <select id="checkUserExists" parameterType="java.lang.String" resultType="java.lang.Boolean">
         SELECT COUNT(*) FROM User WHERE user_id = #{user_id}
     </select>
-
+    <select id="findById"  parameterType="com.example.demo.dto.MemberDTO" resultType="com.example.demo.dto.MemberDTO">
+    select * from User where user_id = #{user_id}
+    </select>
 </mapper>

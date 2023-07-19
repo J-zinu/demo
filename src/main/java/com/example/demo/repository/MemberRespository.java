@@ -31,4 +31,9 @@ public class MemberRespository {
     public MemberDTO login(MemberDTO memberDTO) {
         return sqlSessionTemplate.selectOne("Member.login", memberDTO);
     }
+
+    public MemberDTO findById(String user_id) {
+        return sqlSessionTemplate.selectOne("Member.findById", user_id);
+
+    }
 } // 수정 후

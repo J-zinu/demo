@@ -4,19 +4,16 @@ import com.example.demo.dto.MemberDTO;
 import com.example.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping
 @RequiredArgsConstructor
+
 public class  MemberController {
     private final MemberService memberService;
-
     @GetMapping("/register")
     public String registerForm() {
         return "register"; // register.jsp 파일을 리턴
@@ -55,5 +52,10 @@ public class  MemberController {
         return "redirect:/";
     }
 
-
+    @PostMapping("member/id_check")
+    public @ResponseBody String id_Check(@RequestParam("user_id") String user_id) {
+        System.out.println("user_id = " + user_id);
+        String checkResult = memberService.id_Check(user_id);
+        return checkResult;
+        }
 }
