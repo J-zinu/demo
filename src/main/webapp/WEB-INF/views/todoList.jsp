@@ -24,7 +24,7 @@
         function viewContent(){
             $.ajax({
                 url: "/todoList/get",
-                method: "GET",
+                method: "POST",
                 dataType:"JSON",
                 success: function (data) {
                     viewMainContent(data);

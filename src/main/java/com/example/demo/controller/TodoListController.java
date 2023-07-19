@@ -28,7 +28,7 @@ public class TodoListController {
         return "redirect:/todoList";
     }
 
-    @GetMapping("/todoList/get")
+    @PostMapping("/todoList/get")
     @ResponseBody
     public List<TodoListDTO> TodoListGet(HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
