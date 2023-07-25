@@ -1,0 +1,18 @@
+#content {
+    width: 700px;
+}
+#mid_content {
+    height: 500px;
+}
+#todoListTable {
+    width: 700px;
+}
+#todoListTable th:first-child {
+    width: 70%;
+}
+#todoListTable th:nth-child(2) {
+    width: 30%;
+}
+#todoListTable td:nth-child(2) {
+    text-align: center;
+}

@@ -3,83 +3,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <head>
     <title>todoList</title>
-    <style>
-        #todoListTable {
-            width: 700px;
-        }
-        #todoListTable th:first-child {
-            width: 70%;
-        }
-        #todoListTable th:nth-child(2) {
-            width: 30%;
-        }
-        #todoListTable td:nth-child(2) {
-            text-align: center;
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            viewContent();
-        });
-        function viewContent(){
-            $.ajax({
-                url: "/todoList/get",
-                method: "POST",
-                dataType:"JSON",
-                success: function (data) {
-                    viewMainContent(data);
-                },
-                error: function (error) {
-                    console.error(error);
-                }
-            });
-        }
-        function viewMainContent(data) {
-            var tbody = $('#todolistTable tbody');
-            tbody.empty();
-
-            data.forEach(function(item) {
-                var row = $('<tr>');
-                var todoCol = $('<td>').append(
-                    $('<a>').attr({
-                        // 'href': '/todoList_detail?num=' + item.todo_num,
-                        'id' : 'todo'
-                    }).html('&middot; ' + item.todo)
-                );
-                var functionCol = $('<td>').append(
-                    $('<button>').attr({
-                        'type': 'button',
-                        'id': 'delBtn',
-                        'data-todo-num': item.todo_num
-                    }).text("삭제")
-                );
-
-                row.append(todoCol);
-                row.append(functionCol);
-                tbody.append(row);
-            });
-        }
-        // 삭제 버튼 클릭 이벤트 핸들러 등록
-        $(document).on('click', '#delBtn', function() {
-            var todoNum = $(this).data('todo-num');
-            location.href = "/todoList/delete?todo_num="+todoNum;
-        });
-
-        $(document).on('click', '#logoutBtn', function() {
-            location.href = "/logout";
-        });
-    </script>
+    <link rel="stylesheet" type="text/css" href="todoList.css">
+    <script src="todoList.js"></script>
 </head>
 <body>
-<form method="post" action="/todoList/create">
+<form id="contentForm" method="post" action="/todoList/create">
     <h1>${sessionScope.user_id}님의 todoList</h1>
-    <input type="button" id="logoutBtn"value="나가기">
-    <div name="top_content">
-        <input type="text" name="todo" maxlength="30" required />
-        <input type="hidden" name="user_id" value=${sessionScope.user_id} />
-        <input type="submit" value="추가하기" />
+    <div id="top_content">
+        <input type="text" id="todo" name="todo" maxlength="30" required />
+        <input type="hidden" id="user_id" name="user_id" value=${sessionScope.user_id} />
+        <input type="submit" id="createBtn" value="추가하기" />
+        <input type="button" id="logoutBtn"value="로그아웃" />
     </div>
-    <div name="mid_content">
+    <div id="mid_content">
         <table id="todoListTable">
             <thead>
                 <tr>
@@ -92,6 +28,13 @@
             </tbody>
         </table>
     </div>
+    <div id="bot_content">
+        <input type="text" id="todo_search" placeholder="할 일 찾기" />
+        <input type="button" id="searchBtn" value="찾기" />
+        <input type="button" id="mapBtn" value="맵테스트" />
+    </div>
 </form>
 </body>
 </html>
+
+
