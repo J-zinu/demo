@@ -14,5 +14,4 @@ public interface TodoListMapper {
     List<TodoListDTO> searchAll(String user_id);
     List<TodoListDTO> searchData(String user_id, String todo_search);
 
-    List<TodoListDTO> maptest(String user_id);
 }

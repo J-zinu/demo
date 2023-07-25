@@ -53,67 +53,60 @@ function viewTodoListContent(data) {
 }
 
 // Create - Post
-function viewCreateContent(formData){
-
+function viewCreateContent(formData) {
     $.ajax({
+        type: "POST",
         url: "/todoList/create",
-        method: "POST",
-        dataType: "JSON",
         data: formData,
-        success: function (data) {
-            console.log("submit 성공!!");
-            viewTodoListContent(data);
+        success: function(data) {
+            viewTodoListContent(data.data);
         },
-        error: function (error) {
-            console.error(error);
+        error: function(e) {
+            alert(e.responseText);
         }
     });
 }
 
+
 // Read - Get
-function viewContent(){
+function viewContent() {
     $.ajax({
+        type: "GET",
         url: "/todoList/read",
-        method: "GET",
-        dataType:"JSON",
-        success: function (data) {
-            viewTodoListContent(data);
+        success: function(data) {
+            viewTodoListContent(data.data);
         },
-        error: function (error) {
-            console.error(error);
+        error: function(e) {
+            alert(e.responseText);
         }
     });
 }
 // Update
 // Delete - Post
-function viewDeleteContent(numData){
+function viewDeleteContent(numData) {
     $.ajax({
+        type: "DELETE",
         url: "/todoList/delete",
-        method: "DELETE",
-        dataType: "JSON",
         data: {todo_num: numData},
-        success: function (data) {
-            console.log("submit 성공!!");
-            viewTodoListContent(data);
+        success: function(data) {
+            viewTodoListContent(data.data);
         },
-        error: function (error) {
-            console.error(error);
+        error: function(e) {
+            alert(e.responseText);
         }
     });
 }
 
-function viewSearchContent(searchData){
+function viewSearchContent(searchData) {
     $.ajax({
+        type: "POST",
         url: "/todoList/search",
-        method: "POST",
-        dataType: "JSON",
         data: {todo_search: searchData},
-        success: function (data) {
-            console.log("submit 성공!!");
-            viewTodoListContent(data);
+        success: function(data) {
+            viewTodoListContent(data.data);
         },
-        error: function (error) {
-            console.error(error);
+        error: function(e) {
+            alert(e.responseText);
         }
     });
 }

@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.TodoListDTO;
-import com.example.demo.mapper.TodoListMapper;
 import com.example.demo.service.TodoListService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +13,11 @@ import java.util.Map;
 @Controller
 public class TodoListController {
 
-    @Autowired
-    TodoListMapper todoListMapper;
+    private final TodoListService todoListService;
 
-    @Autowired
-    TodoListService todoListService;
+    public TodoListController(TodoListService todoListService) {
+        this.todoListService = todoListService;
+    }
 
     @GetMapping("/todoList")
     public String TodoList(HttpSession session){
@@ -30,39 +28,47 @@ public class TodoListController {
 
     @PostMapping("/todoList/create")
     @ResponseBody
-    public List<TodoListDTO> TodoListCreate(TodoListDTO form, HttpSession session){
+    public Map<String, Object> TodoListCreate(TodoListDTO form, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
         List<TodoListDTO> createData = todoListService.createTodoList(form, user_id);
-        return createData;
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", createData);
+        return response;
     }
 
     @GetMapping("/todoList/read")
     @ResponseBody
-    public List<TodoListDTO> TodoListGet(HttpSession session){
+    public Map<String, Object> TodoListGet(HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
         List<TodoListDTO> getData = todoListService.findAllList(user_id);
-        return getData;
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", getData);
+        return response;
     }
 
     @DeleteMapping("/todoList/delete")
     @ResponseBody
-    public List<TodoListDTO> TodoListDelete(HttpSession session, int todo_num){
+    public Map<String, Object> TodoListDelete(HttpSession session, int todo_num){
         String user_id = (String) session.getAttribute("user_id");
         List<TodoListDTO> deleteData = todoListService.deleteTodoList(todo_num, user_id);
-        return deleteData;
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", deleteData);
+        return response;
     }
 
     @PostMapping("/todoList/search")
     @ResponseBody
-    public List<TodoListDTO> TodoListSearch(HttpSession session, String todo_search) {
-        System.out.println("todo_search = " + todo_search);
+    public Map<String, Object> TodoListSearch(HttpSession session, String todo_search) {
         String user_id = (String) session.getAttribute("user_id");
         List<TodoListDTO> searchData = todoListService.searchTodoList(user_id, todo_search);
-        return searchData;
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", searchData);
+        return response;
     }
-
-
-
 }
 //    @GetMapping("/todoList")
 //    public String TodoList(HttpSession session){

@@ -15,7 +15,4 @@
         DELETE FROM TodoList WHERE todo_num=#{todo_num}
     </delete>
 
-    <select id="maptest" parameterType="com.example.demo.dto.TodoListDTO" resultType="TodoListDTO">
-        SELECT todo FROM TodoList WHERE user_id = #{user_id}
-    </select>
 </mapper>
