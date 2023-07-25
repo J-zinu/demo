@@ -7,7 +7,12 @@ import java.util.List;
 
 @Mapper
 public interface TodoListMapper {
-    List<TodoListDTO> getTodoList(String user_id);
-    void insertTodoList(TodoListDTO todoListDTO);
-    void deleteTodoList(int todo_num);
+
+    void insertData(TodoListDTO form);
+    void deleteData(int todo_num);
+
+    List<TodoListDTO> searchAll(String user_id);
+    List<TodoListDTO> searchData(String user_id, String todo_search);
+
+    List<TodoListDTO> maptest(String user_id);
 }
