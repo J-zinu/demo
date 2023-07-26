@@ -8,12 +8,16 @@
 </head>
 <body>
 <form id="contentForm" method="post" action="/todoList/create">
-    <h1>${sessionScope.user_id}님의 todoList</h1>
+    <div id = "header">
+        ${sessionScope.user_id}님의 todoList
+        <a href="/manage" id="manage">마이페이지</a>
+        <input type="button" id="logoutBtn" value="로그아웃" />
+    </div>
+
     <div id="top_content">
         <input type="text" id="todo" name="todo" maxlength="30" required />
         <input type="hidden" id="user_id" name="user_id" value=${sessionScope.user_id} />
         <input type="submit" id="createBtn" value="추가하기" />
-        <input type="button" id="logoutBtn"value="로그아웃" />
     </div>
     <div id="mid_content">
         <table id="todoListTable">
