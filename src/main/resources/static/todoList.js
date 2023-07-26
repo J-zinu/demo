@@ -80,10 +80,7 @@ function viewContent() {
         type: "GET",
         success: function(data) {
             console.log(data);
-
-            // 로그인 유효성 검사
             LoginValidate(data);
-            viewTodoListContent(data.data);
         },
         error: function(e) {
             alert(e.responseText);
@@ -122,11 +119,14 @@ function viewSearchContent(searchData) {
     });
 }
 
-// 로그인 유효성 검사
+// 유효성 검사
 function LoginValidate(data){
     if(data.status === "fail") {
         alert(data.message);
         location.href = "/";
+    }
+    else {
+        viewTodoListContent(data.data);
     }
 }
 
