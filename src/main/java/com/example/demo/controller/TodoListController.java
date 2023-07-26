@@ -47,7 +47,7 @@ public class TodoListController {
 
         Map<String, Object> response = new HashMap<>();
 
-        // 유효성 검사
+        // 로그인 유효성 검사
         if(user_id == null){
             response.put("status", "fail");
             response.put("message", "로그인이 필요합니다.");
