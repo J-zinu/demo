@@ -14,6 +14,43 @@ $(document).ready(function () {
         $("#todo").val("").focus();
     });
 
+    $(document).on('click', '#putBtn', function() {
+        console.log('putBtn 정상작동');
+        var todoClass = '.todo'+$(this).data("todo-num");
+        var putClass = '.putBtn'+$(this).data("todo-num");
+        var upClass = '.upBtn'+$(this).data("todo-num");
+        $(todoClass).attr('disabled', true);
+        $(putClass).css('display', 'none');
+        $(upClass).css('display', 'inline');
+
+        var numData = $(this).data("todo-num");
+        var todoData = $(todoClass).val();
+        viewUpdateContent(numData, todoData);
+
+        // var middot = $(todoClass).val().slice(0,1);
+        // var data = $(todoClass).val().slice(2);
+        //
+        // if(middot == "· "){
+        //     console.log("동일합니다.");
+        //
+        // }else if (middot == "·") {
+        //     console.log("다름.");
+        // }else{
+        //     console.log("완전다름.");
+        // }
+    });
+
+    $(document).on('click', '#upBtn', function() {
+        console.log('upBtn 정상작동');
+        var todoClass = '.todo'+$(this).data("todo-num");
+        var putClass = '.putBtn'+$(this).data("todo-num");
+        var upClass = '.upBtn'+$(this).data("todo-num");
+        $(todoClass).attr('disabled', false);
+        $(putClass).css('display', 'inline');
+        $(upClass).css('display', 'none');
+
+    });
+
     $(document).on('click', '#delBtn', function() {
         console.log("delBtn 정상작동");
         var numData = $(this).data("todo-num");
@@ -28,7 +65,6 @@ $(document).ready(function () {
         viewSearchContent(searchData);
     });
 
-
 })
 
 // todoList 목록 보여주기
@@ -39,11 +75,27 @@ function viewTodoListContent(data) {
     data.forEach(function(item) {
         var row = $('<tr>');
         var todoCol = $('<td>').append(
-            $('<a>').attr({
-                'href' : '/todoList_detail?todo_num=' + item.todo_num
-            }).html('&middot; ' + item.todo)
+            $('<input>').attr({
+                'type': 'text',
+                'class': 'todo'+item.todo_num,
+                'data-todo-num': item.todo_num,
+                'disabled': 'disabled'
+            }).val(item.todo)  // val 메소드를 사용하여 값 설정
+        //    .val('· ' + item.todo)
         );
         var functionCol = $('<td>').append(
+            $('<button>').css('display', 'none').attr({
+                'type': 'button',
+                'id': 'putBtn',
+                'class': 'putBtn'+item.todo_num,
+                'data-todo-num': item.todo_num
+            }).text("완료"),
+            $('<button>').attr({
+                'type': 'button',
+                'id': 'upBtn',
+                'class': 'upBtn'+item.todo_num,
+                'data-todo-num': item.todo_num
+            }).text("수정"),
             $('<button>').attr({
                 'type': 'button',
                 'id': 'delBtn',
@@ -57,6 +109,7 @@ function viewTodoListContent(data) {
     });
 }
 
+
 // Create - Post
 function viewCreateContent(formData) {
     $.ajax({
@@ -67,7 +120,7 @@ function viewCreateContent(formData) {
             viewTodoListContent(data.data);
         },
         error: function(e) {
-            alert(e.responseText);
+            alert("create error");
         }
     });
 }
@@ -86,11 +139,28 @@ function viewContent() {
             viewTodoListContent(data.data);
         },
         error: function(e) {
-            alert(e.responseText);
+            alert("read error");
         }
     });
 }
+
 // Update
+function viewUpdateContent(numData, todoData) {
+    console.log("numData : " + typeof numData);
+    console.log("todoData : " + typeof todoData);
+    $.ajax({
+        url: "/todoList/update",
+        type: "PUT",
+        data: {todo: todoData, todo_num: numData},
+        success: function(data) {
+            console.log("연결성공!")
+            viewTodoListContent(data.data);
+        },
+        error: function(e) {
+            alert("update error");
+        }
+    });
+}
 
 // Delete - Delete
 function viewDeleteContent(numData) {
@@ -102,7 +172,7 @@ function viewDeleteContent(numData) {
             viewTodoListContent(data.data);
         },
         error: function(e) {
-            alert(e.responseText);
+            alert("delete error");
         }
     });
 }
@@ -117,7 +187,7 @@ function viewSearchContent(searchData) {
             viewTodoListContent(data.data);
         },
         error: function(e) {
-            alert(e.responseText);
+            alert("search error");
         }
     });
 }
@@ -133,3 +203,4 @@ function LoginValidate(data){
 $(document).on('click', '#logoutBtn', function() {
     location.href = "/logout";
 });
+

@@ -10,6 +10,7 @@ public interface TodoListMapper {
 
     void insertData(TodoListDTO form);
     void deleteData(int todo_num);
+    void updateData(int todo_num, String todo);
 
     List<TodoListDTO> searchAll(String user_id);
     List<TodoListDTO> searchData(String user_id, String todo_search);

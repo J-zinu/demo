@@ -25,6 +25,12 @@ public class TodoListService {
         return findAllList;
     }
 
+    public List<TodoListDTO> updateTodoList(int todo_num, String todo, String user_id){
+        todoListMapper.updateData(todo_num, todo);
+        List<TodoListDTO> findAllList = todoListMapper.searchAll(user_id);
+        return findAllList;
+    }
+
     public List<TodoListDTO> deleteTodoList(int todo_num, String user_id){
         todoListMapper.deleteData(todo_num);
         List<TodoListDTO> findAllList = todoListMapper.searchAll(user_id);

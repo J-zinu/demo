@@ -24,11 +24,6 @@ public class TodoListController {
         return "todoList";
     }
 
-    @GetMapping("/todoList_detail")
-    public String TodoListDetail(){
-        return "todoList_detail";
-    }
-
     @PostMapping("/todoList/create")
     @ResponseBody
     public Map<String, Object> TodoListCreate(TodoListDTO form, HttpSession session){
@@ -57,6 +52,17 @@ public class TodoListController {
             response.put("data", getData);
         }
 
+        return response;
+    }
+
+    @PutMapping("/todoList/update")
+    @ResponseBody
+    public Map<String, Object> TodoListUdate(@RequestParam("todo_num") int todo_num, @RequestParam("todo") String todo, HttpSession session){
+        String user_id = (String) session.getAttribute("user_id");
+        List<TodoListDTO> updateData = todoListService.updateTodoList(todo_num, todo , user_id);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", updateData);
         return response;
     }
 

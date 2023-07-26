@@ -15,4 +15,8 @@
         DELETE FROM TodoList WHERE todo_num=#{todo_num}
     </delete>
 
+    <update id="updateData" parameterType="com.example.demo.dto.TodoListDTO">
+        UPDATE TodoList SET todo=#{todo} WHERE todo_num=#{todo_num}
+    </update>
+
 </mapper>

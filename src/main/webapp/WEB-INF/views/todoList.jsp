@@ -31,7 +31,6 @@
     <div id="bot_content">
         <input type="text" id="todo_search" placeholder="할 일 찾기" />
         <input type="button" id="searchBtn" value="찾기" />
-        <input type="button" id="mapBtn" value="맵테스트" />
     </div>
 </form>
 </body>
