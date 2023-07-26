@@ -8,12 +8,14 @@
 
 </head>
 <body>
-<h1>로그인 페이지입니다.</h1>
-<h2>아이디와 비밀번호를 입력하세요</h2>
-
 <form action="/login" method="post">
 
     <div>
+        <h1>로그인 페이지입니다.</h1>
+        <br>
+        <h2>아이디와 비밀번호를 입력하세요</h2>
+        <br>
+
         <label for="username"></label>
         <input type="text" id="username" name="user_id" placeholder="아이디 입력"><br><br>
         <label for="password"> </label>

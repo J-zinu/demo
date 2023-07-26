@@ -3,18 +3,18 @@ body {
 }
 div {
     margin: auto;
-    width : 300px;
+    width : 500px;
     background-color: #EEEFF1;
     border-radius: 5px;
     text-align: center;
     padding: 50px;
 }
 h1 {
-    color: #FFFFFF;
+    color: #000000;
     text-align: center;
 }
 h2 {
-    color: #FFFFFF;
+    color: #000000;
     text-align: center;
 }
 input {

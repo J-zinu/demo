@@ -10,10 +10,12 @@
     <link rel="stylesheet" type="text/css" href="register.css">
 </head>
 <body>
-<h1>회원가입 페이지입니다.</h1>
-<h2>아이디와 비밀번호를 입력하여 회원 등록을 진행하십시오.</h2>
+
 <form action="/register" method="post">
     <div>
+        <h1>회원가입 페이지입니다.</h1>
+        <h2>아이디와 비밀번호를 입력하여 <br>
+            회원 등록을 진행하십시오.</h2>
         <label for="username">Username:</label>
         <input type="text" id="username" name="user_id" placeholder="사용할 아이디 입력" required onblur="id_Check()"><br>
         <span id="checkResult"></span><br><br> <!-- Add the checkResult element here -->
