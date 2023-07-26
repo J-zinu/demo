@@ -10,7 +10,7 @@ import java.util.List;
 public class HomeController {
     @GetMapping("/")
         public String test() {
-        return "test";
+        return "login";
     }
 
 }

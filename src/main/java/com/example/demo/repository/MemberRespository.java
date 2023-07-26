@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+    package com.example.demo.repository;
 
 import com.example.demo.dto.MemberDTO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,6 +25,7 @@ public class MemberRespository {
     }
 
     public int register(MemberDTO memberDTO) {
+
         return sqlSessionTemplate.insert("Member.register", memberDTO);
     }
 
