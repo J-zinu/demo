@@ -20,10 +20,13 @@ public class TodoListController {
     }
 
     @GetMapping("/todoList")
-    public String TodoList(HttpSession session){
-        String user_id = (String) session.getAttribute("user_id");
-        if(user_id == null){ return "redirect:/"; }
-        else{ return "todoList"; }
+    public String TodoList(){
+        return "todoList";
+    }
+
+    @GetMapping("/todoList_detail")
+    public String TodoListDetail(){
+        return "todoList_detail";
     }
 
     @PostMapping("/todoList/create")
@@ -41,10 +44,19 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListGet(HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
-        List<TodoListDTO> getData = todoListService.findAllList(user_id);
 
         Map<String, Object> response = new HashMap<>();
-        response.put("data", getData);
+
+        // 유효성 검사
+        if(user_id == null){
+            response.put("status", "fail");
+            response.put("message", "로그인이 필요합니다.");
+        }else{
+            List<TodoListDTO> getData = todoListService.findAllList(user_id);
+            response.put("status", "success");
+            response.put("data", getData);
+        }
+
         return response;
     }
 

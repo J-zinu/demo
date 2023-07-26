@@ -6,6 +6,7 @@ $(document).ready(function () {
         var formData = $(this).serialize();
         console.log("formData : "+formData);
 
+        // 이벤트실행 막기 -> 새로고침을 막음
         event.preventDefault();
 
         viewCreateContent(formData);
@@ -37,7 +38,11 @@ function viewTodoListContent(data) {
 
     data.forEach(function(item) {
         var row = $('<tr>');
-        var todoCol = $('<td>').html('&middot; ' + item.todo);
+        var todoCol = $('<td>').append(
+            $('<a>').attr({
+                'href' : '/todoList_detail?todo_num=' + item.todo_num
+            }).html('&middot; ' + item.todo)
+        );
         var functionCol = $('<td>').append(
             $('<button>').attr({
                 'type': 'button',
@@ -55,8 +60,8 @@ function viewTodoListContent(data) {
 // Create - Post
 function viewCreateContent(formData) {
     $.ajax({
-        type: "POST",
         url: "/todoList/create",
+        type: "POST",
         data: formData,
         success: function(data) {
             viewTodoListContent(data.data);
@@ -71,10 +76,11 @@ function viewCreateContent(formData) {
 // Read - Get
 function viewContent() {
     $.ajax({
-        type: "GET",
         url: "/todoList/read",
+        type: "GET",
         success: function(data) {
-            viewTodoListContent(data.data);
+            console.log(data);
+            LoginValidate(data);
         },
         error: function(e) {
             alert(e.responseText);
@@ -82,11 +88,12 @@ function viewContent() {
     });
 }
 // Update
-// Delete - Post
+
+// Delete - Delete
 function viewDeleteContent(numData) {
     $.ajax({
-        type: "DELETE",
         url: "/todoList/delete",
+        type: "DELETE",
         data: {todo_num: numData},
         success: function(data) {
             viewTodoListContent(data.data);
@@ -97,10 +104,11 @@ function viewDeleteContent(numData) {
     });
 }
 
+// Search
 function viewSearchContent(searchData) {
     $.ajax({
-        type: "POST",
         url: "/todoList/search",
+        type: "POST",
         data: {todo_search: searchData},
         success: function(data) {
             viewTodoListContent(data.data);
@@ -111,7 +119,16 @@ function viewSearchContent(searchData) {
     });
 }
 
-
+// 유효성 검사
+function LoginValidate(data){
+    if(data.status === "fail") {
+        alert(data.message);
+        location.href = "/";
+    }
+    else {
+        viewTodoListContent(data.data);
+    }
+}
 
 $(document).on('click', '#logoutBtn', function() {
     location.href = "/logout";
