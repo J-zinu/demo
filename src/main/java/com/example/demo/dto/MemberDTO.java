@@ -1,6 +1,5 @@
 package com.example.demo.dto;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,4 +10,8 @@ import lombok.ToString;
 public class MemberDTO {
     private String user_id;
     private String user_pw;
+
+    public String getUserId() {
+        return this.user_id;
+    }
 }
