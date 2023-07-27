@@ -70,23 +70,23 @@ function viewTodoListContent(data) {
         //    .val('· ' + item.todo)
         );
         var functionCol = $('<td>').append(
-            $('<button>').css('display', 'none').attr({
+            $('<input>').css('display', 'none').attr({
                 'type': 'button',
                 'id': 'putBtn',
                 'class': 'putBtn'+item.todo_num,
                 'data-todo-num': item.todo_num
-            }).text("완료"),
-            $('<button>').attr({
+            }).val("완료"),
+            $('<input>').attr({
                 'type': 'button',
                 'id': 'upBtn',
                 'class': 'upBtn'+item.todo_num,
                 'data-todo-num': item.todo_num
-            }).text("수정"),
-            $('<button>').attr({
+            }).val("수정"),
+            $('<input>').attr({
                 'type': 'button',
                 'id': 'delBtn',
                 'data-todo-num': item.todo_num
-            }).text("삭제")
+            }).val("삭제")
         );
 
         row.append(todoCol);
@@ -130,7 +130,7 @@ function viewContent() {
     });
 }
 
-// Update
+// Update - Put
 function viewUpdateContent(numData, todoData) {
     console.log("numData : " + typeof numData);
     console.log("todoData : " + typeof todoData);
@@ -187,9 +187,8 @@ function LoginValidate(data){
 }
 
 function logout() {
-    // /logout 엔드포인트를 호출하여 사용자 로그아웃
     $.get('/logout', function() {
-        // 로그아웃 후 로그인 페이지 또는 적절한 다른
-        window.location.replace('/login'); // "/login"을 실제 로그인 페이지의 URL로 대체하세요
+        alert("로그아웃 성공");
+        window.location.replace('/login');
     });
 }

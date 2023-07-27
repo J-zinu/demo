@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id = "header">
-    ${sessionScope.user_id}님의 todoList <a id="manage1" href="/manage" id="manage">마이페이지</a>
+    ${sessionScope.user_id}님의 todoList <input id="manage1" type="button" value="마이페이지" onclick="location.href = '/manage'" />
     <input type="button" id="logoutBtn" value="로그아웃" onclick="logout()" />
 </div>
 <div id="content">

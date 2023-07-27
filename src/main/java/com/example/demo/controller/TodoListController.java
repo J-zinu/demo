@@ -23,7 +23,7 @@ public class TodoListController {
     @GetMapping("/todoList")
     public String TodoList(HttpSession session, Model model){
         String user_id = (String) session.getAttribute("user_id");
-        model.addAttribute("user_id", user_id);
+        model.addAttribute("user_id", user_id); // Model-and-View
         return "todoList";
     }
 
