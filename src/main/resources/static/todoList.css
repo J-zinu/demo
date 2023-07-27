@@ -10,6 +10,7 @@ a{text-decoration: none;}
 }
 #mid_content {
     height: 500px;
+    margin-top: 20px;
 }
 #todoListTable {
     width: 700px;
@@ -24,22 +25,6 @@ a{text-decoration: none;}
     text-align: center;
 }
 
-.container table {width: 500px;}
-.container table thead { border: 1px solid orange; float:left; }
-.container table tbody { border: 1px solid red; float:left; }
-.container table thead tr, .container table thead tr th { display:block; }
-/*.container table tbody tr td { display:block; background-color: greenyellow}*/
-/*.second { display: inline-block; }*/
-/*.container table tbody { display:block; oveflow-x:hidden; white-space:nowrap; }*/
-/*.container table tbody tr { display:inline-block; }*/
-/*.container table tbody tr td { display:block;}*/
-
-#detailTable th, td {
-    border: 1px solid black;
-}
-#detailTable {
-    border: 1px solid blue;
-}
 #header{
     background-color: aliceblue;
     width: auto;

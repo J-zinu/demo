@@ -3,14 +3,12 @@ $(document).ready(function () {
 
     $("#contentForm").submit(function(event) {
         console.log("submit 정상 요청됨");
-        var formData = $(this).serialize();
-        console.log("formData : "+formData);
 
         // 이벤트실행 막기 -> 새로고침을 막음
         event.preventDefault();
 
+        var formData = $(this).serialize();
         viewCreateContent(formData);
-
         $("#todo").val("").focus();
     });
 
@@ -26,18 +24,6 @@ $(document).ready(function () {
         var numData = $(this).data("todo-num");
         var todoData = $(todoClass).val();
         viewUpdateContent(numData, todoData);
-
-        // var middot = $(todoClass).val().slice(0,1);
-        // var data = $(todoClass).val().slice(2);
-        //
-        // if(middot == "· "){
-        //     console.log("동일합니다.");
-        //
-        // }else if (middot == "·") {
-        //     console.log("다름.");
-        // }else{
-        //     console.log("완전다름.");
-        // }
     });
 
     $(document).on('click', '#upBtn', function() {
@@ -196,13 +182,9 @@ function viewSearchContent(searchData) {
 function LoginValidate(data){
     if(data.status === "fail") {
         alert(data.message);
-        location.href = "/";
+        location.href = '/';
     }
 }
-
-$(document).on('click', '#logoutBtn', function() {
-    location.href = "/logout";
-});
 
 function logout() {
     // /logout 엔드포인트를 호출하여 사용자 로그아웃
