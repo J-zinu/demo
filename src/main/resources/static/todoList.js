@@ -204,3 +204,10 @@ $(document).on('click', '#logoutBtn', function() {
     location.href = "/logout";
 });
 
+function logout() {
+    // /logout 엔드포인트를 호출하여 사용자 로그아웃
+    $.get('/logout', function() {
+        // 로그아웃 후 로그인 페이지 또는 적절한 다른
+        window.location.replace('/login'); // "/login"을 실제 로그인 페이지의 URL로 대체하세요
+    });
+}
