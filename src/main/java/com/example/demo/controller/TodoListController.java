@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.TodoListDTO;
 import com.example.demo.service.TodoListService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -20,7 +21,9 @@ public class TodoListController {
     }
 
     @GetMapping("/todoList")
-    public String TodoList(){
+    public String TodoList(HttpSession session, Model model){
+        String user_id = (String) session.getAttribute("user_id");
+        model.addAttribute("user_id", user_id);
         return "todoList";
     }
 

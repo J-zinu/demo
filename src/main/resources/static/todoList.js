@@ -31,7 +31,7 @@ $(document).ready(function () {
         var todoClass = '.todo'+$(this).data("todo-num");
         var putClass = '.putBtn'+$(this).data("todo-num");
         var upClass = '.upBtn'+$(this).data("todo-num");
-        $(todoClass).attr('disabled', false);
+        $(todoClass).attr('disabled', false).focus();
         $(putClass).css('display', 'inline');
         $(upClass).css('display', 'none');
 
@@ -66,7 +66,7 @@ function viewTodoListContent(data) {
                 'class': 'todo'+item.todo_num,
                 'data-todo-num': item.todo_num,
                 'disabled': 'disabled'
-            }).val(item.todo)  // val 메소드를 사용하여 값 설정
+            }).val(item.todo)
         //    .val('· ' + item.todo)
         );
         var functionCol = $('<td>').append(
