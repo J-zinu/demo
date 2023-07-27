@@ -1,45 +1,68 @@
-a:link{color:black;}
-a:visited{color:black;}
-a:hover{color:black;}
-a:active{color:black;}
-a{text-decoration: none;}
-
-
 #content {
-    width: 700px;
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#todoListTable td:nth-child(2) input[type=button], #top_content input[type=submit], #top_content input[type=button]{
+    background-color: lightcyan;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 55px;
+    height: 35px;
+    font-size: 20px;
+    margin: 5px;
+}
+#top_content input[type=text]{
+    width: 250px;
+    height: 33px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 5px;
+    font-size: 20px;
+}
+#mid_content input[disabled] {
+    width: 100%;
+    height: 45px;
+    background-color: white;
+    border: none;
+    padding-left: 5px;
+    font-size: 20px;
+}
+#mid_content input:not([disabled]) {
+    width: 100%;
+    height: 45px;
+    background-color: #f1f1f1;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 5px;
+    font-size: 20px;
+}
+#top_content{
+    text-align: center;
 }
 #mid_content {
-    height: 500px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
-#todoListTable {
+
+#mid_content table {
     width: 700px;
+    font-size: 30px;
 }
 #todoListTable th:first-child {
-    width: 70%;
+    width: 80%;
 }
 #todoListTable th:nth-child(2) {
-    width: 30%;
+    width: 20%;
 }
 #todoListTable td:nth-child(2) {
     text-align: center;
 }
 
-.container table {width: 500px;}
-.container table thead { border: 1px solid orange; float:left; }
-.container table tbody { border: 1px solid red; float:left; }
-.container table thead tr, .container table thead tr th { display:block; }
-/*.container table tbody tr td { display:block; background-color: greenyellow}*/
-/*.second { display: inline-block; }*/
-/*.container table tbody { display:block; oveflow-x:hidden; white-space:nowrap; }*/
-/*.container table tbody tr { display:inline-block; }*/
-/*.container table tbody tr td { display:block;}*/
-
-#detailTable th, td {
-    border: 1px solid black;
-}
-#detailTable {
-    border: 1px solid blue;
-}
 #header{
     background-color: aliceblue;
     width: auto;
@@ -47,27 +70,28 @@ a{text-decoration: none;}
     font-size: 20px;
     text-align: center;
     padding-top: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 5px;
 }
 
 
 #logoutBtn {
-    /* 버튼에 대한 스타일 지정 */
-    background-color: cornflowerblue; /* 배경 색 */
-    color: beige; /* 텍스트 색 */
-    border: none; /* 테두리 제거 */
-    padding: 5px 10px; /* 패딩 */
-    border-radius: 5px; /* 모서리 둥글게 */
-    cursor: pointer; /* 마우스 커서 모양 변경 */
+    background-color: cornflowerblue;
+    color: beige;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
     width : 100px;
+    height: 35px;
 }
 
 #manage1{
-    background-color: lightpink; /* 배경 색 */
-    color: beige; /* 텍스트 색 */
-    border: none; /* 테두리 제거 */
-    padding: 5px 10px; /* 패딩 */
-    border-radius: 5px; /* 모서리 둥글게 */
-    cursor: pointer; /* 마우스 커서 모양 변경 */
-
+    background-color: lightpink;
+    color: beige;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width : 100px;
+    height: 35px;
 }

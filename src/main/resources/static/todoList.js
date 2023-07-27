@@ -3,14 +3,12 @@ $(document).ready(function () {
 
     $("#contentForm").submit(function(event) {
         console.log("submit 정상 요청됨");
-        var formData = $(this).serialize();
-        console.log("formData : "+formData);
 
         // 이벤트실행 막기 -> 새로고침을 막음
         event.preventDefault();
 
+        var formData = $(this).serialize();
         viewCreateContent(formData);
-
         $("#todo").val("").focus();
     });
 
@@ -26,18 +24,6 @@ $(document).ready(function () {
         var numData = $(this).data("todo-num");
         var todoData = $(todoClass).val();
         viewUpdateContent(numData, todoData);
-
-        // var middot = $(todoClass).val().slice(0,1);
-        // var data = $(todoClass).val().slice(2);
-        //
-        // if(middot == "· "){
-        //     console.log("동일합니다.");
-        //
-        // }else if (middot == "·") {
-        //     console.log("다름.");
-        // }else{
-        //     console.log("완전다름.");
-        // }
     });
 
     $(document).on('click', '#upBtn', function() {
@@ -45,7 +31,7 @@ $(document).ready(function () {
         var todoClass = '.todo'+$(this).data("todo-num");
         var putClass = '.putBtn'+$(this).data("todo-num");
         var upClass = '.upBtn'+$(this).data("todo-num");
-        $(todoClass).attr('disabled', false);
+        $(todoClass).attr('disabled', false).focus();
         $(putClass).css('display', 'inline');
         $(upClass).css('display', 'none');
 
@@ -80,27 +66,27 @@ function viewTodoListContent(data) {
                 'class': 'todo'+item.todo_num,
                 'data-todo-num': item.todo_num,
                 'disabled': 'disabled'
-            }).val(item.todo)  // val 메소드를 사용하여 값 설정
+            }).val(item.todo)
         //    .val('· ' + item.todo)
         );
         var functionCol = $('<td>').append(
-            $('<button>').css('display', 'none').attr({
+            $('<input>').css('display', 'none').attr({
                 'type': 'button',
                 'id': 'putBtn',
                 'class': 'putBtn'+item.todo_num,
                 'data-todo-num': item.todo_num
-            }).text("완료"),
-            $('<button>').attr({
+            }).val("완료"),
+            $('<input>').attr({
                 'type': 'button',
                 'id': 'upBtn',
                 'class': 'upBtn'+item.todo_num,
                 'data-todo-num': item.todo_num
-            }).text("수정"),
-            $('<button>').attr({
+            }).val("수정"),
+            $('<input>').attr({
                 'type': 'button',
                 'id': 'delBtn',
                 'data-todo-num': item.todo_num
-            }).text("삭제")
+            }).val("삭제")
         );
 
         row.append(todoCol);
@@ -144,7 +130,7 @@ function viewContent() {
     });
 }
 
-// Update
+// Update - Put
 function viewUpdateContent(numData, todoData) {
     console.log("numData : " + typeof numData);
     console.log("todoData : " + typeof todoData);
@@ -196,29 +182,13 @@ function viewSearchContent(searchData) {
 function LoginValidate(data){
     if(data.status === "fail") {
         alert(data.message);
-        location.href = "/";
+        location.href = '/';
     }
 }
 
-$(document).on('click', '#logoutBtn', function() {
-    location.href = "/logout";
-});
-
-// function logout() {
-//     // /logout 엔드포인트를 호출하여 사용자 로그아웃
-//     $.get('/logout', function() {
-//         // 로그아웃 후 로그인 페이지 또는 적절한 다른
-//         window.location.replace('/login'); // "/login"을 실제 로그인 페이지의 URL로 대체하세요
-//     });
-// }
 function logout() {
-    $.get('/logout', function(data) {
-        if (data.status === 'success') {
-            // 로그아웃 성공 시 로그인 페이지 또는 적절한 다른 페이지로 이동
-            window.location.replace("login"); // "/login"을 실제 로그인 페이지의 URL로 대체하세요
-        } else {
-            // 로그아웃 실패 시 메시지 출력 또는 다른 처리
-            alert(data.message);
-        }
+    $.get('/logout', function() {
+        alert("로그아웃 성공");
+        window.location.replace('/login');
     });
 }

@@ -7,16 +7,18 @@
     <script src="todoList.js"></script>
 </head>
 <body>
+<div id = "header">
+    ${sessionScope.user_id}님의 todoList <input id="manage1" type="button" value="마이페이지" onclick="location.href = '/manage'" />
+    <input type="button" id="logoutBtn" value="로그아웃" onclick="logout()" />
+</div>
+<div id="content">
 <form id="contentForm" method="post" action="/todoList/create">
-    <div id = "header">
-        ${sessionScope.user_id}님의 todoList <a id="manage1" href="/manage" id="manage">마이페이지</a>
-            <input type="button" id="logoutBtn" value="로그아웃" onclick="logout()" />
-    </div>
-
     <div id="top_content">
-        <input type="text" id="todo" name="todo" maxlength="30" required />
+        <input type="text" id="todo_search" placeholder="할 일 찾기" />
+        <input type="button" id="searchBtn" value="찾기" /><br/>
+        <input type="text" id="todo" name="todo" maxlength="30" placeholder="할 일 추가" required />
         <input type="hidden" id="user_id" name="user_id" value=${sessionScope.user_id} />
-        <input type="submit" id="createBtn" value="추가하기" />
+        <input type="submit" id="createBtn" value="추가" />
     </div>
     <div id="mid_content">
         <table id="todoListTable">
@@ -31,11 +33,8 @@
             </tbody>
         </table>
     </div>
-    <div id="bot_content">
-        <input type="text" id="todo_search" placeholder="할 일 찾기" />
-        <input type="button" id="searchBtn" value="찾기" />
-    </div>
 </form>
+</div>
 </body>
 </html>
 

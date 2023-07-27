@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.TodoListDTO;
 import com.example.demo.service.TodoListService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -20,20 +21,11 @@ public class TodoListController {
     }
 
     @GetMapping("/todoList")
-//    public String TodoList(){
-//        return "todoList";
-//    }
-
-    public String TodoList(HttpSession session) {
+    public String TodoList(HttpSession session, Model model){
         String user_id = (String) session.getAttribute("user_id");
-        if (user_id == null) {
-            // 로그인 페이지 또는 적절한 다른 페이지로 리다이렉트
-            return "redirect:/login"; // "/
-        } else {
-            return "todoList";
-        }
+        model.addAttribute("user_id", user_id); // Model-and-View
+        return "todoList";
     }
-
 
     @PostMapping("/todoList/create")
     @ResponseBody
