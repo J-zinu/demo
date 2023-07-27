@@ -10,7 +10,6 @@
 <form id="contentForm" method="post" action="/todoList/create">
     <div id = "header">
         ${sessionScope.user_id}님의 todoList <a id="manage1" href="/manage" id="manage">마이페이지</a>
-<%--        <input type="button" id="logoutBtn" value="로그아웃"/>--%>
             <input type="button" id="logoutBtn" value="로그아웃" onclick="logout()" />
     </div>
 
