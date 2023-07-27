@@ -20,9 +20,20 @@ public class TodoListController {
     }
 
     @GetMapping("/todoList")
-    public String TodoList(){
-        return "todoList";
+//    public String TodoList(){
+//        return "todoList";
+//    }
+
+    public String TodoList(HttpSession session) {
+        String user_id = (String) session.getAttribute("user_id");
+        if (user_id == null) {
+            // 로그인 페이지 또는 적절한 다른 페이지로 리다이렉트
+            return "redirect:/login"; // "/
+        } else {
+            return "todoList";
+        }
     }
+
 
     @PostMapping("/todoList/create")
     @ResponseBody
