@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping
@@ -38,12 +40,29 @@ public class  MemberController {
         String checkResult = memberService.id_Check(user_id);
         return checkResult;
     }
-    @GetMapping("/logout") //로그아웃
-    public String logout(HttpSession session){
+
+    //-----------------로그아웃 원본-----------------
+//    @GetMapping("/logout") //로그아웃
+//    public String logout(HttpSession session){
+//        session.invalidate();
+////        return "redirect:/";
+//        return "redirect:/login";
+//    }
+//-----------------로그아웃 원본-----------------
+    @GetMapping("/logout")
+    @ResponseBody
+    public Map<String, Object> logout(HttpSession session) {
         session.invalidate();
-//        return "redirect:/";
-        return "redirect:/login";
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("message", "로그아웃되었습니다.");
+
+        return response;
     }
+
+
+
 
     //    @GetMapping("/login")
 //    public String loginForm() {

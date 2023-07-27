@@ -204,10 +204,21 @@ $(document).on('click', '#logoutBtn', function() {
     location.href = "/logout";
 });
 
+// function logout() {
+//     // /logout 엔드포인트를 호출하여 사용자 로그아웃
+//     $.get('/logout', function() {
+//         // 로그아웃 후 로그인 페이지 또는 적절한 다른
+//         window.location.replace('/login'); // "/login"을 실제 로그인 페이지의 URL로 대체하세요
+//     });
+// }
 function logout() {
-    // /logout 엔드포인트를 호출하여 사용자 로그아웃
-    $.get('/logout', function() {
-        // 로그아웃 후 로그인 페이지 또는 적절한 다른
-        window.location.replace('/login'); // "/login"을 실제 로그인 페이지의 URL로 대체하세요
+    $.get('/logout', function(data) {
+        if (data.status === 'success') {
+            // 로그아웃 성공 시 로그인 페이지 또는 적절한 다른 페이지로 이동
+            window.location.replace("login"); // "/login"을 실제 로그인 페이지의 URL로 대체하세요
+        } else {
+            // 로그아웃 실패 시 메시지 출력 또는 다른 처리
+            alert(data.message);
+        }
     });
 }
