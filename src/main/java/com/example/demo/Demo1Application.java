@@ -11,15 +11,9 @@ public class Demo1Application {
         SpringApplication.run(Demo1Application.class, args);
     }
 
-    @GetMapping("/")
-    public String test(){
-        return "test";
-    }
-
     @GetMapping("/error")
     public String handleError(){
         return "error";
     }
-
 
 }

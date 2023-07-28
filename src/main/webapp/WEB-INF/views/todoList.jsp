@@ -20,6 +20,7 @@
         <input type="hidden" id="user_id" name="user_id" value=${sessionScope.user_id} />
         <input type="submit" id="createBtn" value="추가" />
     </div>
+</form>
     <div id="mid_content">
         <table id="todoListTable">
             <thead>
@@ -33,7 +34,7 @@
             </tbody>
         </table>
     </div>
-</form>
+
 </div>
 </body>
 </html>

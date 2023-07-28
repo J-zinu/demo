@@ -19,7 +19,7 @@ public class ManageService {
         manageMapper.updateUser(memberDTO);
     }
 
-//    @Transactional
+    @Transactional
     public void deleteUser(MemberDTO memberDTO){
         System.out.println("ManageService = " + memberDTO);
         manageMapper.deleteUser(memberDTO);
