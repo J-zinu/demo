@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ManageService {
-    private final ManageMapper manageMapper;
+    private ManageMapper manageMapper;
 
     public ManageService(ManageMapper manageMapper) {
         this.manageMapper = manageMapper;
@@ -19,8 +19,9 @@ public class ManageService {
         manageMapper.updateUser(memberDTO);
     }
 
-    @Transactional
-    public void deleteUser(String userId){
-        manageMapper.deleteUser(userId);
+//    @Transactional
+    public void deleteUser(MemberDTO memberDTO){
+        System.out.println("ManageService = " + memberDTO);
+        manageMapper.deleteUser(memberDTO);
     }
 }

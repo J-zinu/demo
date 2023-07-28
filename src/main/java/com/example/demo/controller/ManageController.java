@@ -36,7 +36,8 @@ public class ManageController {
 
     @PostMapping("/delete")
     public String deleteUser(@RequestBody MemberDTO memberDTO) {
-        manageService.deleteUser(memberDTO.getUserId());
+        System.out.println("memberDTO = " + memberDTO);
+        manageService.deleteUser(memberDTO);
         return "redirect:/login";
     }
 }

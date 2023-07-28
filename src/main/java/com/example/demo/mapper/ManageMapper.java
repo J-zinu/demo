@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ManageMapper {
     void updateUser(MemberDTO memberDTO);
-    void deleteUser(String userId);
+    void deleteUser(MemberDTO memberDTO);
 }
