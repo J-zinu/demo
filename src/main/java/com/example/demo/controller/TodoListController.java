@@ -12,37 +12,41 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/todoList")
 public class TodoListController {
 
+    // DI
     private final TodoListService todoListService;
-
     public TodoListController(TodoListService todoListService) {
         this.todoListService = todoListService;
     }
 
-    @GetMapping("/todoList")
-    public String TodoList(HttpSession session, Model model){
-        String user_id = (String) session.getAttribute("user_id");
-        model.addAttribute("user_id", user_id); // Model-and-View
+    @GetMapping
+    public String TodoList(){
         return "todoList";
     }
 
-    @PostMapping("/todoList/create")
+    @PostMapping("/create")
     @ResponseBody
     public Map<String, Object> TodoListCreate(TodoListDTO form, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
-        List<TodoListDTO> createData = todoListService.createTodoList(form, user_id);
-
         Map<String, Object> response = new HashMap<>();
-        response.put("data", createData);
+
+        // 서비스 검사
+        List<TodoListDTO> createData = todoListService.createTodoList(form, user_id);
+        if(createData != null){
+            response.put("data", createData);
+        }
+        else {
+            response.put("error", "CreateController Error!!");
+        }
         return response;
     }
 
-    @GetMapping("/todoList/read")
+    @GetMapping("/read")
     @ResponseBody
     public Map<String, Object> TodoListGet(HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
-
         Map<String, Object> response = new HashMap<>();
 
         // 로그인 유효성 검사
@@ -58,7 +62,7 @@ public class TodoListController {
         return response;
     }
 
-    @PutMapping("/todoList/update")
+    @PutMapping("/update")
     @ResponseBody
     public Map<String, Object> TodoListUdate(@RequestParam("todo_num") int todo_num, @RequestParam("todo") String todo, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
@@ -69,7 +73,7 @@ public class TodoListController {
         return response;
     }
 
-    @DeleteMapping("/todoList/delete")
+    @DeleteMapping("/delete")
     @ResponseBody
     public Map<String, Object> TodoListDelete(HttpSession session, int todo_num){
         String user_id = (String) session.getAttribute("user_id");
@@ -80,7 +84,7 @@ public class TodoListController {
         return response;
     }
 
-    @PostMapping("/todoList/search")
+    @PostMapping("/search")
     @ResponseBody
     public Map<String, Object> TodoListSearch(HttpSession session, String todo_search) {
         String user_id = (String) session.getAttribute("user_id");
