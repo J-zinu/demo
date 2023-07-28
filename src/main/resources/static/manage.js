@@ -27,13 +27,13 @@ $(document).ready(function() {
     $('#deleteAccount').on('click', function() {
         if(confirm("정말로 계정을 삭제하시겠습니까?")) {
             var user_id = $('#user_id').val();
-
+            alert(user_id);
             $.ajax({
                 url: "/manage/delete",
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify({
-                    userId: user_id
+                    user_id: user_id
                 }),
                 success: function() {
                     alert("계정이 성공적으로 삭제되었습니다!");
