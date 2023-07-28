@@ -106,7 +106,7 @@ function viewCreateContent(formData) {
             viewTodoListContent(data.data);
         },
         error: function(e) {
-            alert("create error");
+            alert("Create Connect Error");
         }
     });
 }
