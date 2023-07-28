@@ -40,4 +40,11 @@ public class ManageController {
         manageService.deleteUser(memberDTO);
         return "redirect:/login";
     }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
+    }
+
 }

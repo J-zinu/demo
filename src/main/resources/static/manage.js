@@ -45,4 +45,25 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('#logout').on('click', function() {
+        $.ajax({
+            url: "manage/logout",
+            method: "POST",
+            success: function() {
+                alert("성공적으로 로그아웃되었습니다!");
+                window.location.href = "/login";
+            },
+            error: function() {
+                alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+            }
+        });
+    });
+
+
+    $('#backButton').on('click', function() {
+        window.history.back();
+    });
+
+
 });

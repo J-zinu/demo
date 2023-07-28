@@ -1,4 +1,3 @@
-<!-- HTML -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,7 +15,10 @@
     <input type="hidden" id="user_id" name="user_id" value="${sessionScope.user_id}" />
     <input type="submit" value="비밀번호 변경" />
 </form>
-
+<button id="backButton">돌아가기</button>
+<button id="logout" onclick="logout()">로그아웃</button>
+<br>
 <button id="deleteAccount">회원 탈퇴</button>
+
 </body>
 </html>

@@ -32,3 +32,6 @@ input {
     border-radius: 5px; /* 모서리 둥글게 */
     cursor: pointer; /* 마우스 커서 모양 변경 */
 }
+#login:hover {
+    background-color: #5a6268;
+}
