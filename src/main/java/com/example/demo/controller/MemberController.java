@@ -23,17 +23,34 @@ public class  MemberController {
     }
     // 회원 가입 요청을 받아 처리하는 메소드
 
+    //    @PostMapping("/register") //회원가입(데이터베이스에 회원정보 저장)
+//    public String register(@ModelAttribute MemberDTO memberDTO) {
+//        int registerResult = memberService.register(memberDTO);
+//        System.out.println("registerResult = " + registerResult);
+//        if(registerResult >0 ) {
+//            return "redirect:/login";
+//        }
+//        else {
+//            return "redirect:/register";
+//        }
+//    }
     @PostMapping("/register") //회원가입(데이터베이스에 회원정보 저장)
-    public String register(@ModelAttribute MemberDTO memberDTO) {
+    @ResponseBody
+    public Map<String, Object> register(@ModelAttribute MemberDTO memberDTO) {
         int registerResult = memberService.register(memberDTO);
-        System.out.println("registerResult = " + registerResult);
+        Map<String, Object> response = new HashMap<>();
+
         if(registerResult >0 ) {
-            return "redirect:/login";
+            response.put("status", "success");
+            response.put("message", "회원가입이 완료되었습니다.");
         }
         else {
-            return "redirect:/register";
+            response.put("status", "fail");
+            response.put("message", "회원가입에 실패하였습니다.");
         }
+        return response;
     }
+
     @PostMapping("member/id_check") //회원가입 시 id 중복 체크
     public @ResponseBody String id_Check(@RequestParam("user_id") String user_id) {
         System.out.println("user_id = " + user_id);
