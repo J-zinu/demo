@@ -6,16 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpSession;
 
-//@Repository //mybartis의 기능별 쿼리 정의
-//public class MemberRespository {
-//
-//    public int register(MemberDTO memberDTO) {
-//        System.out.println("memberDTO: " + memberDTO);
-//        return 0;
-//
-//    }
-//
-//} // 수정 전
 @Repository
 public class MemberRespository {
     private final SqlSessionTemplate sqlSessionTemplate;

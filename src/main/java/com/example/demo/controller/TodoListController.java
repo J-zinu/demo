@@ -64,7 +64,7 @@ public class TodoListController {
 
     @PutMapping("/update")
     @ResponseBody
-    public Map<String, Object> TodoListUdate(@RequestParam("todo_num") int todo_num, @RequestParam("todo") String todo, HttpSession session){
+    public Map<String, Object> TodoListUpdate(@RequestParam("todo_num") int todo_num, @RequestParam("todo") String todo, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
         List<TodoListDTO> updateData = todoListService.updateTodoList(todo_num, todo , user_id);
 

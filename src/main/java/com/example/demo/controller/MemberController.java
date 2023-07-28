@@ -17,34 +17,21 @@ import java.util.Map;
 
 public class  MemberController {
     private final MemberService memberService;
+
     @GetMapping("/register")
     public String registerForm() {
         return "register"; // register.jsp 파일을 리턴
     }
-    // 회원 가입 요청을 받아 처리하는 메소드
-
-    //    @PostMapping("/register") //회원가입(데이터베이스에 회원정보 저장)
-//    public String register(@ModelAttribute MemberDTO memberDTO) {
-//        int registerResult = memberService.register(memberDTO);
-//        System.out.println("registerResult = " + registerResult);
-//        if(registerResult >0 ) {
-//            return "redirect:/login";
-//        }
-//        else {
-//            return "redirect:/register";
-//        }
-//    }
     @PostMapping("/register") //회원가입(데이터베이스에 회원정보 저장)
     @ResponseBody
     public Map<String, Object> register(@ModelAttribute MemberDTO memberDTO) {
         int registerResult = memberService.register(memberDTO);
         Map<String, Object> response = new HashMap<>();
 
-        if(registerResult >0 ) {
+        if (registerResult > 0) {
             response.put("status", "success");
             response.put("message", "회원가입이 완료되었습니다.");
-        }
-        else {
+        } else {
             response.put("status", "fail");
             response.put("message", "회원가입에 실패하였습니다.");
         }
@@ -58,14 +45,6 @@ public class  MemberController {
         return checkResult;
     }
 
-    //-----------------로그아웃 원본-----------------
-//    @GetMapping("/logout") //로그아웃
-//    public String logout(HttpSession session){
-//        session.invalidate();
-////        return "redirect:/";
-//        return "redirect:/login";
-//    }
-//-----------------로그아웃 원본-----------------
     @GetMapping("/logout")
     @ResponseBody
     public Map<String, Object> logout(HttpSession session) {
@@ -77,25 +56,4 @@ public class  MemberController {
 
         return response;
     }
-
-
-
-
-    //    @GetMapping("/login")
-//    public String loginForm() {
-//        return "/login";
-//    }
-//
-//    @PostMapping("/login")
-//    public String login(@ModelAttribute MemberDTO memberDTO,
-//                        HttpSession session) {
-//       boolean loginResult = memberService.login(memberDTO);
-//       if (loginResult) {
-//              session.setAttribute("user_id", memberDTO.getUser_id());
-//              return "redirect:/todoList";
-//         } else {
-//              return "/login";
-//       }
-//    }
-
 }
