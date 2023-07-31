@@ -32,31 +32,28 @@ public class TodoListService {
 
     // 생성
     @Transactional
-    public List<TodoListDTO> createTodoList(TodoListDTO form, String user_id){
+    public int createTodoList(TodoListDTO form, String user_id){
         if(todoListMapper.insertData(form) == 1){
-            List<TodoListDTO> findAllList = todoListMapper.searchAll(user_id);
-            return findAllList;
+            return 1;
         }
-        else return null;
+        else return -1;
     }
 
     // 수정
     @Transactional
-    public List<TodoListDTO> updateTodoList(int todo_num, String todo, String user_id){
+    public int updateTodoList(int todo_num, String todo, String user_id){
         if(todoListMapper.updateData(todo_num, todo) == 1){
-            List<TodoListDTO> findAllList = todoListMapper.searchAll(user_id);
-            return findAllList;
+            return 1;
         }
-        else return null;
+        else return -1;
     }
 
     // 삭제
     @Transactional
-    public List<TodoListDTO> deleteTodoList(int todo_num, String user_id){
+    public int deleteTodoList(int todo_num, String user_id){
         if(todoListMapper.deleteData(todo_num) == 1){
-            List<TodoListDTO> findAllList = todoListMapper.searchAll(user_id);
-            return findAllList;
+            return 1;
         }
-        else return null;
+        else return -1;
     }
 }
