@@ -5,6 +5,7 @@ import com.example.demo.service.TodoListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -62,9 +63,10 @@ public class TodoListController {
         return response;
     }
 
+// @RequestParam("todo_num")  안써도 인식이됨
     @PutMapping("/update")
     @ResponseBody
-    public Map<String, Object> TodoListUpdate(@RequestParam("todo_num") int todo_num, @RequestParam("new_todo") String new_todo, HttpSession session){
+    public Map<String, Object> TodoListUpdate(int todo_num, String new_todo, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> response = new HashMap<>();
 
@@ -105,7 +107,11 @@ public class TodoListController {
         String user_id = (String) session.getAttribute("user_id");
 
         Map<String, Object> response = todoListService.searchTodoList(user_id,todo_search);
-        response.put("controllerBool", true);
+
+        if((boolean) response.get("serviceBool") == true){
+            response.put("controllerBool", true);
+        }
+
         return response;
     }
 
