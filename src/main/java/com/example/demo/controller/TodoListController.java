@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.dto.TodoListDTO;
 import com.example.demo.service.TodoListService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -34,7 +33,7 @@ public class TodoListController {
         Map<String, Object> response = new HashMap<>();
 
         // 서비스 검사
-        if(todoListService.createTodoList(form, user_id) == 1){
+        if(todoListService.createTodoList(form) == 1){
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("data", findAllData);
         }

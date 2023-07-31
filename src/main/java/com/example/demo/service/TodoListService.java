@@ -11,6 +11,7 @@ import java.util.List;
 public class TodoListService {
 
     TodoListMapper todoListMapper;
+
     public TodoListService(TodoListMapper todoListMapper) {
         this.todoListMapper = todoListMapper;
     }
@@ -32,7 +33,7 @@ public class TodoListService {
 
     // 생성
     @Transactional
-    public int createTodoList(TodoListDTO form, String user_id){
+    public int createTodoList(TodoListDTO form){
         if(todoListMapper.insertData(form) == 1){
             return 1;
         }
@@ -42,7 +43,7 @@ public class TodoListService {
     // 수정
     @Transactional
     public int updateTodoList(int todo_num, String todo, String user_id){
-        if(todoListMapper.updateData(todo_num, todo) == 1){
+        if(todoListMapper.updateData(todo_num, todo, user_id) == 1){
             return 1;
         }
         else return -1;
@@ -51,7 +52,7 @@ public class TodoListService {
     // 삭제
     @Transactional
     public int deleteTodoList(int todo_num, String user_id){
-        if(todoListMapper.deleteData(todo_num) == 1){
+        if(todoListMapper.deleteData(todo_num, user_id) == 1){
             return 1;
         }
         else return -1;
