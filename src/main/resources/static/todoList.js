@@ -133,12 +133,12 @@ function viewContent() {
 
 // Update - Put
 function viewUpdateContent(numData, todoData) {
-    console.log("numData : " + typeof numData);
-    console.log("todoData : " + typeof todoData);
+    console.log("numData : " + numData);
+    console.log("todoData : " + todoData);
     $.ajax({
         url: "/todoList/update",
         type: "PUT",
-        data: {todo: todoData, todo_num: numData},
+        data: {new_todo: todoData, todo_num: numData},
         success: function(data) {
             console.log("연결성공!")
             viewTodoListContent(data.data);

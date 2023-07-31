@@ -17,6 +17,7 @@ public class TodoListController {
 
     // DI
     private final TodoListService todoListService;
+
     public TodoListController(TodoListService todoListService) {
         this.todoListService = todoListService;
     }
@@ -36,7 +37,6 @@ public class TodoListController {
         if(todoListService.createTodoList(form, user_id) == 1){
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("data", findAllData);
-            System.out.println("response = " + response);
         }
         else {
             response.put("error", "CreateController Error!!");
@@ -65,12 +65,15 @@ public class TodoListController {
 
     @PutMapping("/update")
     @ResponseBody
-    public Map<String, Object> TodoListUpdate(@RequestParam("todo_num") int todo_num, @RequestParam("todo") String todo, HttpSession session){
+    public Map<String, Object> TodoListUpdate(@RequestParam("todo_num") int todo_num, @RequestParam("new_todo") String new_todo, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> response = new HashMap<>();
 
+        System.out.println("todo_num = " + todo_num);
+        System.out.println("new_todo = " + new_todo);
+
         // 서비스 검사
-        if(todoListService.updateTodoList(todo_num, todo , user_id) == 1){
+        if(todoListService.updateTodoList(todo_num, new_todo , user_id) == 1){
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("data", findAllData);
         }
