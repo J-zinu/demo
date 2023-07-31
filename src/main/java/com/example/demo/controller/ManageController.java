@@ -27,7 +27,6 @@ public class ManageController {
             return "manage";
         }
     }
-
     @PostMapping("/update")
     public String updateUser(@RequestBody MemberDTO memberDTO) {
         manageService.updateUser(memberDTO);

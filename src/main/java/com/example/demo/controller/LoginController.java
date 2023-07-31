@@ -20,7 +20,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginForm() {
-        System.out.println("Accessing login form");
+        System.out.println("로그인 폼 접근중");
         return "/login";
     }
 
@@ -28,19 +28,19 @@ public class LoginController {
     @ResponseBody
     public Map<String, Object> login(@ModelAttribute MemberDTO memberDTO,
                                      HttpSession session) {
-        System.out.println("Attempting to login with user ID: " + memberDTO.getUser_id());
+        System.out.println("사용자 ID로 로그인 시도 중: " + memberDTO.getUser_id());
 
         boolean loginResult = loginService.login(memberDTO);
         Map<String, Object> response = new HashMap<>();
         if (loginResult) {
             session.setAttribute("user_id", memberDTO.getUser_id());
-            System.out.println("컨트롤러 로그인성공 후 세션에 저장");
+            System.out.println("로그인 성공, 작업 관리 목록으로 리디렉션합니다.");
             response.put("status", "success");
-            response.put("message", "Successfully logged in. Redirecting to the task list.");
+            response.put("message", "로그인 성공. 작업 관리 목록으로 리디렉션합니다.");
         } else {
-            System.out.println("Login failed, returning to login page");
+            System.out.println("로그인 실패, 로그인 페이지로 돌아갑니다.");
             response.put("status", "fail");
-            response.put("message", "Login failed. Returning to the login page.");
+            response.put("message", "로그인 실패. 로그인 페이지로 돌아갑니다.");
         }
         return response;
     }
