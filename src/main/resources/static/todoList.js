@@ -51,6 +51,11 @@ $(document).ready(function () {
         viewSearchContent(searchData);
     });
 
+    $(document).on('click', '#testBtn', function() {
+        console.log("testBtn 정상작동");
+        viewTestContent();
+    });
+
 })
 
 // todoList 목록 보여주기
@@ -120,7 +125,7 @@ function viewContent() {
         type: "GET",
         success: function(data) {
             console.log(data);
-
+            console.log(data.data);
             // 로그인 유효성 검사
             LoginValidate(data);
             viewTodoListContent(data.data);
@@ -171,6 +176,7 @@ function viewSearchContent(searchData) {
         type: "POST",
         data: {todo_search: searchData},
         success: function(data) {
+            console.log(data);
             viewTodoListContent(data.data);
         },
         error: function(e) {
@@ -193,3 +199,4 @@ function logout() {
         window.location.replace('/login');
     });
 }
+

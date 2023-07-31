@@ -103,12 +103,12 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListSearch(HttpSession session, String todo_search) {
         String user_id = (String) session.getAttribute("user_id");
-        List<TodoListDTO> searchData = todoListService.searchTodoList(user_id, todo_search);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("data", searchData);
+        Map<String, Object> response = todoListService.searchTodoList(user_id,todo_search);
+        response.put("controllerBool", true);
         return response;
     }
+
 }
 //    @GetMapping("/todoList")
 //    public String TodoList(HttpSession session){

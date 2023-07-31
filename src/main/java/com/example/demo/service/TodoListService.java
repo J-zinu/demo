@@ -5,7 +5,9 @@ import com.example.demo.mapper.TodoListMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TodoListService {
@@ -25,10 +27,13 @@ public class TodoListService {
 
     // 검색
     @Transactional
-    public List<TodoListDTO> searchTodoList(String user_id, String todo_search){
-        todoListMapper.searchData(user_id, todo_search);
-        List<TodoListDTO> findDataList = todoListMapper.searchData(user_id, todo_search);
-        return findDataList;
+    public Map<String, Object> searchTodoList(String user_id, String todo_search){
+        Map<String, Object> searchMap = new HashMap<>();
+        List<TodoListDTO> searchData = todoListMapper.searchData(user_id, todo_search);
+        searchMap.put("data", searchData);
+        searchMap.put("serviceBool", true);
+
+        return searchMap;
     }
 
     // 생성
@@ -57,4 +62,5 @@ public class TodoListService {
         }
         else return -1;
     }
+
 }
