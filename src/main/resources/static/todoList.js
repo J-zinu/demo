@@ -29,7 +29,7 @@ $(document).ready(function () {
     $(document).on('click', '#upBtn', function() {
         console.log('upBtn 정상작동');
         var todoClass = '.todo'+$(this).data("todo-num");
-        var putClass = '.putBtn'+$(this).data("todo-num");
+        var putClass = '.putBtn' + $(this).data("todo-num");
         var upClass = '.upBtn'+$(this).data("todo-num");
         $(todoClass).attr('disabled', false).focus();
         $(putClass).css('display', 'inline');
@@ -85,6 +85,7 @@ function viewTodoListContent(data) {
             $('<input>').attr({
                 'type': 'button',
                 'id': 'delBtn',
+                'class': 'functionBtn',
                 'data-todo-num': item.todo_num
             }).val("삭제")
         );

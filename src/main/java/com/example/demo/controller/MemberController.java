@@ -22,6 +22,7 @@ public class  MemberController {
     public String registerForm() {
         return "register"; // register.jsp 파일을 리턴
     }
+
     @PostMapping("/register") //회원가입(데이터베이스에 회원정보 저장)
     @ResponseBody
     public Map<String, Object> register(@ModelAttribute MemberDTO memberDTO) {
