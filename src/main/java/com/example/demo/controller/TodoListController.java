@@ -33,9 +33,10 @@ public class TodoListController {
         Map<String, Object> response = new HashMap<>();
 
         // 서비스 검사
-        List<TodoListDTO> createData = todoListService.createTodoList(form, user_id);
-        if(createData != null){
-            response.put("data", createData);
+        if(todoListService.createTodoList(form, user_id) == 1){
+            List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
+            response.put("data", findAllData);
+            System.out.println("response = " + response);
         }
         else {
             response.put("error", "CreateController Error!!");
@@ -54,9 +55,9 @@ public class TodoListController {
             response.put("status", "fail");
             response.put("message", "로그인이 필요합니다.");
         }else{
-            List<TodoListDTO> getData = todoListService.findAllList(user_id);
+            List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("status", "success");
-            response.put("data", getData);
+            response.put("data", findAllData);
         }
 
         return response;
@@ -66,10 +67,16 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListUpdate(@RequestParam("todo_num") int todo_num, @RequestParam("todo") String todo, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
-        List<TodoListDTO> updateData = todoListService.updateTodoList(todo_num, todo , user_id);
-
         Map<String, Object> response = new HashMap<>();
-        response.put("data", updateData);
+
+        // 서비스 검사
+        if(todoListService.updateTodoList(todo_num, todo , user_id) == 1){
+            List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
+            response.put("data", findAllData);
+        }
+        else {
+            response.put("error", "UpdateController Error!!");
+        }
         return response;
     }
 
@@ -77,10 +84,16 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListDelete(HttpSession session, int todo_num){
         String user_id = (String) session.getAttribute("user_id");
-        List<TodoListDTO> deleteData = todoListService.deleteTodoList(todo_num, user_id);
-
         Map<String, Object> response = new HashMap<>();
-        response.put("data", deleteData);
+
+        // 서비스 검사
+        if(todoListService.deleteTodoList(todo_num, user_id) == 1){
+            List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
+            response.put("data", findAllData);
+        }
+        else {
+            response.put("error", "DeleteController Error!!");
+        }
         return response;
     }
 
