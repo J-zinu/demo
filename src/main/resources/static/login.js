@@ -14,7 +14,6 @@ $(document).ready(function () {
             data: data,
             success: function (response) {
                 console.log("login.js 서버에서 응답을 받았습니다: ", response);
-
                 if (response.status === 'success') {
                     console.log("login.js 로그인 성공, 할 일 목록 페이지로 이동합니다");
                     alert(response.message);

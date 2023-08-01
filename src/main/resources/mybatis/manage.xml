@@ -11,4 +11,6 @@
     <delete id="deleteUser" parameterType="com.example.demo.dto.MemberDTO">
         DELETE FROM User WHERE user_id = #{user_id}
     </delete>
+
+
 </mapper>
