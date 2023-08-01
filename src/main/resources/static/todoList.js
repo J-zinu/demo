@@ -127,7 +127,7 @@ function viewContent() {
             console.log(data);
             console.log(data.data);
             // 로그인 유효성 검사
-            LoginValidate(data);
+            // LoginValidate(data);
             viewTodoListContent(data.data);
         },
         error: function(e) {
@@ -193,13 +193,13 @@ function viewSearchContent(searchData) {
     });
 }
 
-// 로그인 유효성 검사
-function LoginValidate(data){
-    if(data.status === "fail") {
-        alert(data.message);
-        location.href = '/';
-    }
-}
+// // 로그인 유효성 검사
+// function LoginValidate(data){
+//     if(data.status === "fail") {
+//         alert(data.message);
+//         location.href = '/';
+//     }
+// }
 
 // 로그아웃
 function logout() {
