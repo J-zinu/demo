@@ -5,12 +5,15 @@ import com.example.demo.mapper.TodoListMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TodoListService {
 
     TodoListMapper todoListMapper;
+
     public TodoListService(TodoListMapper todoListMapper) {
         this.todoListMapper = todoListMapper;
     }
@@ -24,15 +27,18 @@ public class TodoListService {
 
     // 검색
     @Transactional
-    public List<TodoListDTO> searchTodoList(String user_id, String todo_search){
-        todoListMapper.searchData(user_id, todo_search);
-        List<TodoListDTO> findDataList = todoListMapper.searchData(user_id, todo_search);
-        return findDataList;
+    public Map<String, Object> searchTodoList(String user_id, String todo_search){
+        Map<String, Object> searchMap = new HashMap<>();
+        List<TodoListDTO> searchData = todoListMapper.searchData(user_id, todo_search);
+        searchMap.put("data", searchData);
+        searchMap.put("serviceBool", true);
+
+        return searchMap;
     }
 
     // 생성
     @Transactional
-    public int createTodoList(TodoListDTO form, String user_id){
+    public int createTodoList(TodoListDTO form){
         if(todoListMapper.insertData(form) == 1){
             return 1;
         }
@@ -42,7 +48,7 @@ public class TodoListService {
     // 수정
     @Transactional
     public int updateTodoList(int todo_num, String todo, String user_id){
-        if(todoListMapper.updateData(todo_num, todo) == 1){
+        if(todoListMapper.updateData(todo_num, todo, user_id) == 1){
             return 1;
         }
         else return -1;
@@ -51,9 +57,10 @@ public class TodoListService {
     // 삭제
     @Transactional
     public int deleteTodoList(int todo_num, String user_id){
-        if(todoListMapper.deleteData(todo_num) == 1){
+        if(todoListMapper.deleteData(todo_num, user_id) == 1){
             return 1;
         }
         else return -1;
     }
+
 }

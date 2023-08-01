@@ -2,10 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.TodoListDTO;
 import com.example.demo.service.TodoListService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +24,27 @@ public class TodoListController {
         this.todoListService = todoListService;
     }
 
+//    @GetMapping
+//    public String TodoList(){
+//        return "todoList";
+//    }
     @GetMapping
-    public String TodoList(){
-        return "todoList";
+    public ModelAndView content(HttpSession session) {
+        String user_id = (String) session.getAttribute("user_id");
+
+        // 데이터와 뷰를 동시에 설정이 가능
+        ModelAndView modelAndView = new ModelAndView();
+
+        // 로그인 유효성 검사
+        if(user_id == null){
+            modelAndView.setViewName("login"); // 뷰의 이름
+            modelAndView.addObject("test", "반환값"); // 뷰로 보낼 데이터 값
+        }else{
+            modelAndView.setViewName("todoList"); // 뷰의 이름
+            modelAndView.addObject("user_id", user_id); // 뷰로 보낼 데이터 값
+        }
+
+        return modelAndView;
     }
 
     @PostMapping("/create")
@@ -34,7 +54,7 @@ public class TodoListController {
         Map<String, Object> response = new HashMap<>();
 
         // 서비스 검사
-        if(todoListService.createTodoList(form, user_id) == 1){
+        if(todoListService.createTodoList(form) == 1){
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("data", findAllData);
         }
@@ -51,21 +71,24 @@ public class TodoListController {
         Map<String, Object> response = new HashMap<>();
 
         // 로그인 유효성 검사
-        if(user_id == null){
-            response.put("status", "fail");
-            response.put("message", "로그인이 필요합니다.");
-        }else{
-            List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
-            response.put("status", "success");
-            response.put("data", findAllData);
-        }
-
+//        if(user_id == null){
+//            response.put("status", "fail");
+//            response.put("message", "로그인이 필요합니다.");
+//        }else{
+//            List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
+//            response.put("status", "success");
+//            response.put("data", findAllData);
+//        }
+        List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
+        response.put("status", "success");
+        response.put("data", findAllData);
         return response;
     }
 
+// @RequestParam("todo_num")  안써도 인식이됨
     @PutMapping("/update")
     @ResponseBody
-    public Map<String, Object> TodoListUpdate(@RequestParam("todo_num") int todo_num, @RequestParam("new_todo") String new_todo, HttpSession session){
+    public Map<String, Object> TodoListUpdate(int todo_num, String new_todo, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> response = new HashMap<>();
 
@@ -104,12 +127,16 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListSearch(HttpSession session, String todo_search) {
         String user_id = (String) session.getAttribute("user_id");
-        List<TodoListDTO> searchData = todoListService.searchTodoList(user_id, todo_search);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("data", searchData);
+        Map<String, Object> response = todoListService.searchTodoList(user_id,todo_search);
+
+        if((boolean) response.get("serviceBool")){
+            response.put("controllerBool", true);
+        }
+
         return response;
     }
+
 }
 
 // 레파지토리에서 작업했던 부분 (소스코드는 크게 바뀌지 않았음)

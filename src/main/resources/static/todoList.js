@@ -51,6 +51,11 @@ $(document).ready(function () {
         viewSearchContent(searchData);
     });
 
+    $(document).on('click', '#testBtn', function() {
+        console.log("testBtn 정상작동");
+        viewTestContent();
+    });
+
 })
 
 // todoList 목록 보여주기
@@ -119,9 +124,9 @@ function viewContent() {
         type: "GET",
         success: function(data) {
             console.log(data);
-
+            console.log(data.data);
             // 로그인 유효성 검사
-            LoginValidate(data);
+            // LoginValidate(data);
             viewTodoListContent(data.data);
         },
         error: function(e) {
@@ -170,7 +175,16 @@ function viewSearchContent(searchData) {
         type: "POST",
         data: {todo_search: searchData},
         success: function(data) {
-            viewTodoListContent(data.data);
+            console.log(data);
+            if(data.serviceBool === true && data.controllerBool === true){
+                console.log("상태확인 완료");
+                viewTodoListContent(data.data);
+            }
+            else{
+                console.log("상태이상 발견");
+                alert("알 수 없는 오류입니다.");
+                location.href = '/todoList';
+            }
         },
         error: function(e) {
             alert("search error");
@@ -178,17 +192,19 @@ function viewSearchContent(searchData) {
     });
 }
 
-// 로그인 유효성 검사
-function LoginValidate(data){
-    if(data.status === "fail") {
-        alert(data.message);
-        location.href = '/';
-    }
-}
+// // 로그인 유효성 검사
+// function LoginValidate(data){
+//     if(data.status === "fail") {
+//         alert(data.message);
+//         location.href = '/';
+//     }
+// }
 
+// 로그아웃
 function logout() {
     $.get('/logout', function() {
         alert("로그아웃 성공");
         window.location.replace('/login');
     });
 }
+
