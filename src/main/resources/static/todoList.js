@@ -19,6 +19,9 @@ $(document).ready(function () {
         var todoClass = '.todo'+$(this).data("todo-num");
         var putClass = '.putBtn'+$(this).data("todo-num");
         var upClass = '.upBtn'+$(this).data("todo-num");
+
+        console.log(this);
+
         $(todoClass).attr('disabled', true);
         $(putClass).css('display', 'none');
         $(upClass).css('display', 'inline');
@@ -69,6 +72,23 @@ $(document).ready(function () {
         }
     });
 
+    $(document).on("keydown","#todoInput",function (key){
+        if (key.keyCode == 13) {
+            console.log("todoInput 정상작동");
+            var todoClass = '.todo'+$(this).data("todo-num");
+            var putClass = '.putBtn'+$(this).data("todo-num");
+            var upClass = '.upBtn'+$(this).data("todo-num");
+            $(todoClass).attr('disabled', true);
+            $(putClass).css('display', 'none');
+            $(upClass).css('display', 'inline');
+
+            var numData = $(this).data("todo-num");
+            var todoData = $(todoClass).val();
+            viewUpdateContent(numData, todoData);
+
+        }
+    })
+
 })
 
 // todoList 목록 보여주기
@@ -81,6 +101,7 @@ function viewTodoListContent(data) {
         var todoCol = $('<td>').append(
             $('<input>').attr({
                 'type': 'text',
+                'id': 'todoInput',
                 'class': 'todo'+item.todo_num,
                 'data-todo-num': item.todo_num,
                 'disabled': 'disabled'
@@ -159,7 +180,7 @@ function viewUpdateContent(numData, todoData) {
         data: {new_todo: todoData, todo_num: numData},
         success: function(data) {
             console.log("연결성공!")
-            viewTodoListContent(data.data);
+            // viewTodoListContent(data.data);
         },
         error: function(e) {
             alert("update error");
