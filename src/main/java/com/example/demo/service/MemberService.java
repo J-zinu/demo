@@ -37,7 +37,7 @@ public class MemberService {
 
 
 
-
+// 레파지토리 시절
 //    private final MemberRespository memberRespository;
 //
 //    public int register(MemberDTO memberDTO) {

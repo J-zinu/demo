@@ -96,7 +96,6 @@ function viewTodoListContent(data) {
     });
 }
 
-
 // Create - Post
 function viewCreateContent(formData) {
     $.ajax({

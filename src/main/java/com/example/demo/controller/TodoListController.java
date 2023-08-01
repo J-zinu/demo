@@ -111,6 +111,8 @@ public class TodoListController {
         return response;
     }
 }
+
+// 레파지토리에서 작업했던 부분 (소스코드는 크게 바뀌지 않았음)
 //    @GetMapping("/todoList")
 //    public String TodoList(HttpSession session){
 //        String user_id = (String) session.getAttribute("user_id");

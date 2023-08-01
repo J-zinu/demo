@@ -13,7 +13,6 @@ public class ManageService {
     public ManageService(ManageMapper manageMapper) {
         this.manageMapper = manageMapper;
     }
-
     @Transactional
     public void updateUser(MemberDTO memberDTO){
         manageMapper.updateUser(memberDTO);

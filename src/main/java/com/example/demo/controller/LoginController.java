@@ -5,8 +5,10 @@ import com.example.demo.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -19,10 +21,13 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/login")
-    public String loginForm() {
+    public ModelAndView loginForm() {
         System.out.println("로그인 폼에 접근");
-        return "/login";
+        ModelAndView login_url = new ModelAndView();
+        login_url.setViewName("login");
+        return login_url;
     }
+
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
