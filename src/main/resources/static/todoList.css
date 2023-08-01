@@ -58,7 +58,7 @@
     align-items: center;
     justify-content: center;
 }
-#todoListTable td:nth-child(2) input[type=button], #top_content input[type=submit], #top_content input[type=button]{
+#todoListTable td:nth-child(2) input[type=button], #top_content input[type=submit], #top_content input[type=button], #top_content2 input[type=submit], #top_content2 input[type=button]{
     background-color: lightcyan;
     border: 1px solid black;
     border-radius: 5px;
@@ -68,11 +68,11 @@
     margin: 5px;
 
 }
-#todoListTable td:nth-child(2) input[type=button]:hover, #top_content input[type=submit]:hover, #top_content input[type=button]:hover{
+#todoListTable td:nth-child(2) input[type=button]:hover, #top_content input[type=submit]:hover, #top_content input[type=button]:hover, #top_content2 input[type=submit]:hover, #top_content2 input[type=button]:hover{
     cursor: pointer;
 }
 
-#top_content input[type=text]{
+#top_content input[type=text], #top_content2 input[type=text]{
     width: 250px;
     height: 33px;
     background-color: white;

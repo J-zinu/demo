@@ -12,10 +12,14 @@
     <input type="button" id="logoutBtn" value="로그아웃" onclick="logout()" />
 </div>
 <div id="content">
-<form id="contentForm" method="post" action="/todoList/create">
-    <div id="top_content">
+<%--<form id="contentForm2" method="post" action="/todoList/create">--%>
+    <div id="top_content2">
         <input type="text" id="todo_search" placeholder="할 일 찾기" />
         <input type="button" id="searchBtn" class="functionBtn" value="찾기" /><br/>
+    </div>
+<%--</form>--%>
+<form id="contentForm" method="post" action="/todoList/create">
+    <div id="top_content">
         <input type="text" id="todo" name="todo" maxlength="30" placeholder="할 일 추가" required />
         <input type="hidden" id="user_id" name="user_id" value=${sessionScope.user_id} />
         <input type="submit" id="createBtn" class="functionBtn" value="추가" />

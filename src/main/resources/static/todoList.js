@@ -1,6 +1,7 @@
 $(document).ready(function () {
     viewContent();
 
+    // 추가 버튼
     $("#contentForm").submit(function(event) {
         console.log("submit 정상 요청됨");
 
@@ -12,6 +13,7 @@ $(document).ready(function () {
         $("#todo").val("").focus();
     });
 
+    //완료 버튼
     $(document).on('click', '#putBtn', function() {
         console.log('putBtn 정상작동');
         var todoClass = '.todo'+$(this).data("todo-num");
@@ -26,6 +28,7 @@ $(document).ready(function () {
         viewUpdateContent(numData, todoData);
     });
 
+    // 수정 버튼
     $(document).on('click', '#upBtn', function() {
         console.log('upBtn 정상작동');
         var todoClass = '.todo'+$(this).data("todo-num");
@@ -37,6 +40,7 @@ $(document).ready(function () {
 
     });
 
+    // 삭제 버튼
     $(document).on('click', '#delBtn', function() {
         console.log("delBtn 정상작동");
         var numData = $(this).data("todo-num");
@@ -44,16 +48,25 @@ $(document).ready(function () {
         viewDeleteContent(numData);
     });
 
+    // 찾기 버튼
     $(document).on('click', '#searchBtn', function() {
         console.log("searchBtn 정상작동");
         var searchData = $('#todo_search').val();
         console.log("todo_search : "+ searchData);
         viewSearchContent(searchData);
+        $("#todo_search").val("").focus();
     });
 
-    $(document).on('click', '#testBtn', function() {
-        console.log("testBtn 정상작동");
-        viewTestContent();
+
+    // 엔터키 적용
+    $("#todo_search").keydown(function(key) {
+        if (key.keyCode == 13) {
+            console.log("searchInput 정상작동");
+            var searchData = $('#todo_search').val();
+            console.log("todo_search : "+ searchData);
+            viewSearchContent(searchData);
+            $("#todo_search").val("").focus();
+        }
     });
 
 })
