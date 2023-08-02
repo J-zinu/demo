@@ -72,6 +72,7 @@ $(document).ready(function () {
         }
     });
 
+    // 엔터키 적용
     $(document).on("keydown","#todoInput",function (key){
         if (key.keyCode == 13) {
             console.log("todoInput 정상작동");
