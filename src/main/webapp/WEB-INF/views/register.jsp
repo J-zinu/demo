@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form action="/register" method="post" id="registerForm"> <!-- Add id attribute here -->
+<form action="/register" id="registerForm"> <!-- Add id attribute here -->
     <div>
         <h1>회원가입 페이지입니다.</h1>
         <h2>아이디와 비밀번호를 입력하여 <br>

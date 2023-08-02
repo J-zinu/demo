@@ -33,7 +33,7 @@ public class ManageController {
         return new ModelAndView(viewName, params);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     @ResponseBody
     public Map<String, Object> updateUser(@RequestBody MemberDTO memberDTO) {
         manageService.updateUser(memberDTO);

@@ -20,6 +20,13 @@ import java.util.Map;
 public class LoginController {
     private final LoginService loginService;
 
+
+    //프로젝트 향후 추가할 부분
+    //checkbox를 통해서 todolist를 일괄 삭제 및 수정
+    //member에 대해서 admin(관리자)을 통해서 이를 조회 및 수정
+    //Transaction에 대해서 공부하여, 수정 및 삭제에 대해서 롤백이 가능하도록 구현
+    //우선적으로 어노테이션 및 다른 부분에 대해서 어떻게 작동을 하는지 공부할 필요가 있음
+
     @GetMapping("/login")
     public ModelAndView loginForm() {
         System.out.println("로그인 폼에 접근");

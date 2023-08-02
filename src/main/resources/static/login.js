@@ -18,6 +18,7 @@ $(document).ready(function () {
                     console.log("login.js 로그인 성공, 할 일 목록 페이지로 이동합니다");
                     alert(response.message);
                     window.location.href = '/todoList';
+
                 } else {
                     console.log("login.js 로그인 실패, 로그인 페이지로 돌아갑니다");
                     alert(response.message);

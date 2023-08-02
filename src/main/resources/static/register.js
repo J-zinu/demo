@@ -31,7 +31,7 @@ const register = (event) => {
     const user_pw = document.getElementById("password").value;
 
     $.ajax({
-        type:"post",
+        type:"POST",
         url: "/register",
         data: {
             user_id: user_id,

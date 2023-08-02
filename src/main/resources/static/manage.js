@@ -11,7 +11,7 @@ $(document).ready(function() {
 
         $.ajax({
             url: "/manage/update",
-            method: "POST",
+            method: "PUT",
             contentType: "application/json",
             data: JSON.stringify({
                 user_id: user_id,
