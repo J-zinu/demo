@@ -5,9 +5,7 @@ import com.example.demo.mapper.TodoListMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class TodoListService {
@@ -19,14 +17,12 @@ public class TodoListService {
     }
 
     // 모두보기
-    @Transactional
     public List<TodoListDTO> findAllList(String user_id){
         List<TodoListDTO> findAllList = todoListMapper.searchAll(user_id);
         return findAllList;
     }
 
     // 검색
-    @Transactional
     public Map<String, Object> searchTodoList(String user_id, String todo_search){
         Map<String, Object> searchMap = new HashMap<>();
         List<TodoListDTO> searchData = todoListMapper.searchData(user_id, todo_search);
@@ -37,7 +33,6 @@ public class TodoListService {
     }
 
     // 생성
-    @Transactional
     public int createTodoList(TodoListDTO form){
         if(todoListMapper.insertData(form) == 1){
             return 1;
@@ -46,7 +41,6 @@ public class TodoListService {
     }
 
     // 수정
-    @Transactional
     public int updateTodoList(int todo_num, String todo, String user_id){
         if(todoListMapper.updateData(todo_num, todo, user_id) == 1){
             return 1;
@@ -55,12 +49,11 @@ public class TodoListService {
     }
 
     // 삭제
-    @Transactional
-    public int deleteTodoList(int todo_num, String user_id){
-        if(todoListMapper.deleteData(todo_num, user_id) == 1){
-            return 1;
+    public boolean deleteTodoList(int todo_num, String user_id){
+        if(todoListMapper.deleteData(todo_num, user_id)){
+            return true;
         }
-        else return -1;
+        else return false;
     }
 
 }

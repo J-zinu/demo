@@ -10,7 +10,7 @@ import java.util.Map;
 public interface TodoListMapper {
 
     int insertData(TodoListDTO form);
-    int deleteData(int todo_num, String user_id);
+    boolean deleteData(int todo_num, String user_id);
     int updateData(int todo_num, String todo, String user_id);
 
     List<TodoListDTO> searchAll(String user_id);

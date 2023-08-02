@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -17,17 +16,27 @@ import java.util.Map;
 @RequestMapping("/todoList")
 public class TodoListController {
 
+//    @Autowired
+//    TodoListService todoListService;
+
     // DI
     private final TodoListService todoListService;
 
+    @Autowired
     public TodoListController(TodoListService todoListService) {
         this.todoListService = todoListService;
     }
+
+//    @Autowired
+//    public void setTodoListService(TodoListService todoListService) {
+//        this.todoListService = todoListService;
+//    }
 
 //    @GetMapping
 //    public String TodoList(){
 //        return "todoList";
 //    }
+
     @GetMapping
     public ModelAndView content(HttpSession session) {
         String user_id = (String) session.getAttribute("user_id");
@@ -113,7 +122,7 @@ public class TodoListController {
         Map<String, Object> response = new HashMap<>();
 
         // 서비스 검사
-        if(todoListService.deleteTodoList(todo_num, user_id) == 1){
+        if(todoListService.deleteTodoList(todo_num, user_id)){
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("data", findAllData);
         }
