@@ -60,15 +60,14 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListCreate(TodoListDTO form, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
-        Map<String, Object> response = new HashMap<>();
+        Map<String, Object> response = todoListService.createTodoList(form);
 
-        // 서비스 검사
-        if(todoListService.createTodoList(form) == 1){
+        if((Boolean) response.get("createBool")){
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("data", findAllData);
         }
         else {
-            response.put("error", "CreateController Error!!");
+            response.put("error", "생성 오류");
         }
         return response;
     }
@@ -79,15 +78,6 @@ public class TodoListController {
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> response = new HashMap<>();
 
-        // 로그인 유효성 검사
-//        if(user_id == null){
-//            response.put("status", "fail");
-//            response.put("message", "로그인이 필요합니다.");
-//        }else{
-//            List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
-//            response.put("status", "success");
-//            response.put("data", findAllData);
-//        }
         List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
         response.put("status", "success");
         response.put("data", findAllData);
