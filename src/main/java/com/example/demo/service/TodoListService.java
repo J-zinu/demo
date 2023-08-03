@@ -33,11 +33,13 @@ public class TodoListService {
     }
 
     // 생성
-    public int createTodoList(TodoListDTO form){
+    public Map<String, Object> createTodoList(TodoListDTO form){
         if(todoListMapper.insertData(form) == 1){
-            return 1;
+            Map<String, Object> createMap = new HashMap<>();
+            createMap.put("createBool", true);
+            return createMap;
         }
-        else return -1;
+        else return null;
     }
 
     // 수정
