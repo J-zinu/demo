@@ -20,7 +20,6 @@ import java.util.Map;
 public class LoginController {
     private final LoginService loginService;
 
-
     //프로젝트 향후 추가할 부분
     //checkbox를 통해서 todolist를 일괄 삭제 및 수정
     //member에 대해서 admin(관리자)을 통해서 이를 조회 및 수정
@@ -34,7 +33,6 @@ public class LoginController {
         login_url.setViewName("login");
         return login_url;
     }
-
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -50,7 +48,7 @@ public class LoginController {
             response.put("status", "success");
             response.put("message", "서버에서의 알림 : 로그인 성공! 할일 목록 페이지로 이동합니다.");
         } else {
-            System.out.println("Login failed, returning to login page");
+            System.out.println("콘솔에  로그인 실패!!!!! 출력");
             response.put("status", "fail");
             response.put("message", "서버에서의 알림 : 로그인 실패! 로그인 페이지로 돌아갑니다.");
         }

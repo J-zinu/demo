@@ -42,18 +42,19 @@ public class TodoListController {
         String user_id = (String) session.getAttribute("user_id");
 
         // 데이터와 뷰를 동시에 설정이 가능
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView mv = new ModelAndView();
 
         // 로그인 유효성 검사
         if(user_id == null){
-            modelAndView.setViewName("login"); // 뷰의 이름
-            modelAndView.addObject("test", "반환값"); // 뷰로 보낼 데이터 값
+            mv.setViewName("login"); // 뷰의 이름
+            mv.addObject("test", "반환값"); // 뷰로 보낼 데이터 값
         }else{
-            modelAndView.setViewName("todoList"); // 뷰의 이름
-            modelAndView.addObject("user_id", user_id); // 뷰로 보낼 데이터 값
+            mv.setViewName("todoList"); // 뷰의 이름
+            mv.addObject("user_id", user_id);
+            // mv.addObject("변수 이름", "데이터 값"); 형태를 사용한 메소드로 데이터를보냄
         }
 
-        return modelAndView;
+        return mv; //ModelAndView 객체를 반환
     }
 
     @PostMapping("/create")

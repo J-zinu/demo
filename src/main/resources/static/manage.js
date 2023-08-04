@@ -1,7 +1,4 @@
 $(document).ready(function() {
-
-
-
     // 아래는 수정 ㄴㄴ
     $('#updateForm').on('submit', function(e) {
         e.preventDefault();

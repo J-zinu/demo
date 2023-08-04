@@ -25,6 +25,7 @@ const id_Check = () => {
         }
     })
 }
+
 const register = (event) => {
     event.preventDefault();
     const user_id = document.getElementById("username").value;
@@ -39,7 +40,7 @@ const register = (event) => {
         },
         success: function (response) {
             if (response.status === "success") {
-                alert("회원가입에 성공하였습니다.");
+                alert("회원가입에 성공하였습니다." + "\n" + "로그인 페이지로 이동합니다." + "\n" + "아이디 : " + user_id + "\n" + "비밀번호 : " + user_pw);
                 window.location.href = "/login";  // 페이지를 로그인 페이지로 리다이렉트
             }
             else{

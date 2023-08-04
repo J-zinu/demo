@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         var form = $(this).parents('form');
         var url = form.attr('action');
-        var data = form.serialize();
+        var data = form.serialize(); //직렬화를 통해서 데이터를 가져옴
 
         console.log("login.js 서버에 로그인 요청을 보내는 중, 다음 데이터를 사용합니다: " + data);
 

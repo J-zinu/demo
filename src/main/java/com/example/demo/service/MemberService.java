@@ -16,9 +16,9 @@ public class MemberService {
     private final MemberMapper memberMapper;
 
     public int register(MemberDTO memberDTO){
-        MemberDTO memberFound = memberMapper.findById(memberDTO.getUser_id());
+        MemberDTO idCheckResult = memberMapper.findById(memberDTO.getUser_id());
         //이미 존재하는 경우 -1을 반환한다.
-        if(memberFound != null){
+        if(idCheckResult != null){
             return -1;
         }
         else{

@@ -22,6 +22,7 @@
         <label for="password"> </label>
         PW : <input type="password" id="password" name="user_pw" placeholder="비밀번호"><br><br>
         <input id="login" type="submit" value="로그인">
+<%--        $('#login') --%>
         <br>
         <p>아직 회원이 아니신가요?</p>
         <a href="/register">회원가입 하러가기</a>
