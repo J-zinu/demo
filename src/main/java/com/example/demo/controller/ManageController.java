@@ -73,10 +73,10 @@ public class ManageController {
     @ResponseBody
     public Map<String, Object> logout(HttpSession session) {
         session.invalidate();
-        Map<String, Object> result = new HashMap<>();
-        result.put("message", "성공적으로 로그아웃되었습니다!");
-        result.put("status", "success");
-        return result;
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "성공적으로 로그아웃되었습니다!");
+        response.put("status", "success");
+        return response;
     }
 }
 

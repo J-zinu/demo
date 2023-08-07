@@ -16,7 +16,7 @@ $(document).ready(function() {
             }),
 
             success: function(response) {
-                if (response.status == "success") {
+                if (response.status === "success") {
                     alert(response.message);
                     window.location.reload();
                 } else {
@@ -41,7 +41,7 @@ $(document).ready(function() {
                     user_id: user_id
                 }),
                 success: function(response) {
-                    if (response.status == "success") {
+                    if (response.status === "success") {
                         alert(response.message);
                         window.location.href = "/login";
                     } else {
@@ -60,7 +60,7 @@ $(document).ready(function() {
             url: "/manage/logout",
             method: "POST",
             success: function(response) {
-                if (response.status == "success") {
+                if (response.status === "success") {
                     alert(response.message);
                     window.location.href = "/login";
                 } else {
@@ -72,6 +72,8 @@ $(document).ready(function() {
             }
         });
     });
+
+
 
     $('#backButton').on('click', function() {
         window.history.back();
