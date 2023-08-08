@@ -8,4 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ManageMapper {
     void updateUser(MemberDTO memberDTO);
     void deleteUser(MemberDTO memberDTO);
+
+
+
 }

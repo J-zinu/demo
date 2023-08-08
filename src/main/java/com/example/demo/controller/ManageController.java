@@ -33,22 +33,6 @@ public class ManageController {
         return new ModelAndView(viewName, params);
     }
 
-    ////    @GetMapping
-////    @ResponseBody
-////    public Map<String, Object> managePage(HttpSession session) {
-////        String user_id = (String) session.getAttribute("user_id");
-////
-////        Map<String, Object> response = new HashMap<>();
-////        if (user_id == null) {
-////            response.put("status", "fail");
-////            response.put("message", "로그인 페이지로 리다이렉트합니다.");
-////        } else {
-////            response.put("status", "success");
-////            response.put("message", "manage 페이지에 접근했습니다.");
-////        }
-////        return response;
-////    }
-
     @PutMapping("/update")
     @ResponseBody
     public Map<String, Object> updateUser(@RequestBody MemberDTO memberDTO) {

@@ -35,6 +35,9 @@ public class MemberService {
         }
     }
 
+}
+
+//
 
 
 // 레파지토리 시절
@@ -60,5 +63,3 @@ public class MemberService {
 //            return "success";
 //        }
 //    }
-
-}

@@ -9,7 +9,8 @@ public interface MemberMapper {
 
     int register(MemberDTO memberDTO);
 
-    MemberDTO login(MemberDTO memberDTO);
-
     MemberDTO findById(String user_id);
+    MemberDTO login (MemberDTO memberDTO);
+
+
 }
