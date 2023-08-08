@@ -22,25 +22,28 @@ public class ManageService {
 
     public int updateUser(MemberDTO memberDTO) {
         int pw_upDate = manageMapper.updateUser(memberDTO);
-        if (pw_upDate > 0){
+        if (pw_upDate > 0) {
             return pw_upDate;
-        }
-        else {
+        } else {
             return 0;
         }
     }
 
-
-    public int deleteUser(MemberDTO memberDTO){
-        int user_Delete = manageMapper.deleteUser(memberDTO);
-        if(user_Delete > 0 ){
+    @Transactional
+    public int deleteUser(MemberDTO memberDTO) {
+        try {
+            int user_Delete = manageMapper.deleteUser(memberDTO);
+            if (user_Delete <= 0) {
+                throw new RuntimeException("User deletion failed");
+            }
             return user_Delete;
-        }
-        else {
-            return 0;
+        } catch (Exception e) {
+            // 여기서 추가적인 로그 기록 또는 처리를 할 수 있습니다.
+            throw e; // 예외를 다시 던져서 트랜잭션 롤백을 트리거합니다.
         }
     }
 
+}
 //
 //    public void deleteUser(MemberDTO memberDTO) {
 //        System.out.println("ManageService = " + memberDTO);
@@ -57,5 +60,5 @@ public class ManageService {
 ////        manageMapper.deleteUser(memberDTO);
 ////        throw new RuntimeException("롤백을 테스트하기 위한 강제 RuntimeException");
 //    }
-}
+
 //뷰페이지를 반환 하는 방법은 3가지가있음 ModelAndView, String, ResponseBody

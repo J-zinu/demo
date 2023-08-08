@@ -60,6 +60,7 @@ public class ManageController {
         return result;
     }
 
+
     @DeleteMapping("/delete")
     @ResponseBody
     public Map<String, Object> deleteUser(@RequestBody MemberDTO memberDTO){
@@ -70,7 +71,7 @@ public class ManageController {
             result.put("status", "success");
         }
         else {
-            result.put("message", "계정 삭제에 실패하였습니다!!");
+            result.put("message", "TODOLIST 모두 삭제하고, 다시 회원 탈퇴를 진행해주세요.");
             result.put("status", "fail");
         }
         return result;

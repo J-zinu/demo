@@ -21,8 +21,6 @@ public class ErrorController {
 //        return mav;
 //    }
 
-
-
     @GetMapping("/error")
     public ResponseEntity<HashMap<String, String>> handleError() {
         HashMap<String, String> response = new HashMap<>();
