@@ -42,7 +42,6 @@ public class  MemberController {
         return response;
     }
 
-
     @PostMapping("member/id_check") //회원가입 시 id 중복 체크
     public @ResponseBody String id_Check(@RequestParam("user_id") String user_id) {
         System.out.println("user_id = " + user_id);

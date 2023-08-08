@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping
 @RequiredArgsConstructor
 public class LoginController {
     private final LoginService loginService;

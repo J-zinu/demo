@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/manage")
+@RequestMapping("/manage") //개별 핸들러 메소드가 같은 URL 패턴에 매핑된다.
 public class ManageController {
     private final ManageService manageService;
 
@@ -33,25 +33,58 @@ public class ManageController {
         return new ModelAndView(viewName, params);
     }
 
-    @PutMapping("/update")
+//    @PutMapping("/update") //@RequestMapping 이 존재하므로 ("/update")를 사용할 수 있는건데, 아니라면 ("/manage/update")형태로 작성을 해주어야 합니다.
+//    @ResponseBody
+//    public Map<String, Object> updateUser(@RequestBody MemberDTO memberDTO) {
+//        manageService.updateUser(memberDTO);
+//        Map<String, Object> result = new HashMap<>();
+//        result.put("message", "비밀번호가 성공적으로 변경되었습니다!");
+//        result.put("status", "success");
+//        return result;
+//    }
+
+    @PutMapping("/update")//@RequestMapping 이 존재하므로 ("/update")를 사용할 수 있는건데, 아니라면 ("/manage/update")형태로 작성을 해주어야 합니다.
     @ResponseBody
-    public Map<String, Object> updateUser(@RequestBody MemberDTO memberDTO) {
-        manageService.updateUser(memberDTO);
+    public Map<String, Object> updateUser(@RequestBody MemberDTO memberDTO){
+        int pw_upDate = manageService.updateUser(memberDTO);
         Map<String, Object> result = new HashMap<>();
-        result.put("message", "비밀번호가 성공적으로 변경되었습니다!");
-        result.put("status", "success");
+
+        if (pw_upDate > 0) {
+            result.put("message", "비밀번호가 성공적으로 변경되었습니다.");
+            result.put("status", "success");
+        }
+        else{
+            result.put("message", "비밀번호 변경에 실패하였습니다.");
+            result.put("status", "fail");
+        }
         return result;
     }
 
     @DeleteMapping("/delete")
     @ResponseBody
-    public Map<String, Object> deleteUser(@RequestBody MemberDTO memberDTO) {
-        manageService.deleteUser(memberDTO);
+    public Map<String, Object> deleteUser(@RequestBody MemberDTO memberDTO){
+        int user_Delete =  manageService.deleteUser(memberDTO);
         Map<String, Object> result = new HashMap<>();
-        result.put("message", "계정이 성공적으로 삭제되었습니다!");
-        result.put("status", "success");
+        if(user_Delete> 0) {
+            result.put("message", "계정이 성공적으로 삭제되었습니다!");
+            result.put("status", "success");
+        }
+        else {
+            result.put("message", "계정 삭제에 실패하였습니다!!");
+            result.put("status", "fail");
+        }
         return result;
     }
+
+//    @DeleteMapping("/delete")
+//    @ResponseBody
+//    public Map<String, Object> deleteUser(@RequestBody MemberDTO memberDTO) {
+//        manageService.deleteUser(memberDTO);
+//        Map<String, Object> result = new HashMap<>();
+//        result.put("message", "계정이 성공적으로 삭제되었습니다!");
+//        result.put("status", "success");
+//        return result;
+//    }
 
     @PostMapping("/logout")
     @ResponseBody
