@@ -21,10 +21,12 @@ $(document).ready(function() {
                     window.location.reload();
                 } else {
                     alert(response.message);
+                    window.location.href = "/login";
                 }
             },
             error: function() {
-                alert("비밀번호 변경에 실패했습니다. 다시 시도해주세요.");
+                alert("이미 탈퇴된 아이디이므로"+"\n"+"비밀번호 변경에 실패했습니다.");
+                window.location.href = "/login";
             }
         });
     });
@@ -46,11 +48,13 @@ $(document).ready(function() {
                         window.location.href = "/login";
                     } else {
                         alert(response.message);
+                        window.location.href = "/login";
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
-                    alert("TODOLIST 모두 삭제하고," +"\n"+ "다시 회원 탈퇴를 진행해주세요.");
+                    alert("이미 탈퇴가 진행되었거나," + "\n" + "TODOLIST 를 모두 삭제하고" + "\n"+"다시 회원탈퇴를 진행해주세요.");
+                    window.location.href = "/login";
                 }
 
             });
@@ -71,6 +75,7 @@ $(document).ready(function() {
             },
             error: function() {
                 alert("로그아웃에 실패했습니다. 다시 시도해주세요.");
+                window.location.href = "/login";
             }
         });
     });

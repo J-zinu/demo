@@ -54,7 +54,7 @@ public class ManageController {
             result.put("status", "success");
         }
         else{
-            result.put("message", "비밀번호 변경에 실패하였습니다.");
+            result.put("message", "이미 탈퇴된 아이디이므로"+ "\n" + "비밀번호 변경에 실패하여 로그인 화면으로 이동합니다.");
             result.put("status", "fail");
         }
         return result;
@@ -70,8 +70,12 @@ public class ManageController {
             result.put("message", "계정이 성공적으로 삭제되었습니다!");
             result.put("status", "success");
         }
+        else if (user_Delete == 0){
+            result.put("message", "이미 회원탈퇴가 진행되었거나," +"\n"+"TODOLIST 모두 삭제하고," +"\n"+ "다시 회원 탈퇴를 진행해주세요.");
+            result.put("status", "error");
+        }
         else {
-            result.put("message", "TODOLIST 모두 삭제하고," +"\n"+ "다시 회원 탈퇴를 진행해주세요.");
+            result.put("message", "이미 회원탈퇴가 진행되었거나," +"\n"+"TODOLIST 모두 삭제하고," +"\n"+ "다시 회원 탈퇴를 진행해주세요.");
             result.put("status", "fail");
         }
         return result;

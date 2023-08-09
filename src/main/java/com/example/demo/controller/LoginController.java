@@ -37,7 +37,7 @@ public class LoginController {
 
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Map<String, Object> login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
+    public Map<String, Object>login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         System.out.println("사용자 ID로 로그인 시도중: " + memberDTO.getUser_id());
 
         String existingSessionId = sessionConfig.getSessionidCheck("user_id", memberDTO.getUser_id(), session);
