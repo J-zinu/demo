@@ -151,7 +151,6 @@ function viewCreateContent(formData) {
     });
 }
 
-
 // Read - Get
 function viewContent() {
     $.ajax({
