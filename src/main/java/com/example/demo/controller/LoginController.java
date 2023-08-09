@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.SessionConfig;
 import com.example.demo.dto.MemberDTO;
 import com.example.demo.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class LoginController {
     private final LoginService loginService;
+    private final SessionConfig sessionConfig;  // SessionConfig 객체를 주입받습니다.
 
     //프로젝트 향후 추가할 부분
     //checkbox를 통해서 todolist를 일괄 삭제 및 수정
@@ -33,11 +34,21 @@ public class LoginController {
         return login_url;
     }
 
+
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Map<String, Object> login(@ModelAttribute MemberDTO memberDTO,
-                                     HttpSession session) {
+    public Map<String, Object> login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
         System.out.println("사용자 ID로 로그인 시도중: " + memberDTO.getUser_id());
+
+        String existingSessionId = sessionConfig.getSessionidCheck("user_id", memberDTO.getUser_id(), session);
+
+        if (existingSessionId != null) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("status", "fail");
+            response.put("message", "서버에서 알림: 해당 사용자 ID로 이미 로그인이 되어 있습니다.");
+            return response;
+        }
+
 
         boolean loginResult = loginService.login(memberDTO);
         Map<String, Object> response = new HashMap<>();

@@ -71,7 +71,7 @@ public class ManageController {
             result.put("status", "success");
         }
         else {
-            result.put("message", "TODOLIST 모두 삭제하고, 다시 회원 탈퇴를 진행해주세요.");
+            result.put("message", "TODOLIST 모두 삭제하고," +"\n"+ "다시 회원 탈퇴를 진행해주세요.");
             result.put("status", "fail");
         }
         return result;

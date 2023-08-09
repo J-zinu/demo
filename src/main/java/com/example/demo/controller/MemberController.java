@@ -34,10 +34,8 @@ public class  MemberController {
 
         if (registerResult > 0) {
             response.put("status", "success");
-            response.put("message", "회원가입이 완료되었습니다.");
         } else {
             response.put("status", "fail");
-            response.put("message", "회원가입에 실패하였습니다.");
         }
         return response;
     }

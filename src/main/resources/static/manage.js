@@ -50,7 +50,7 @@ $(document).ready(function() {
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
-                    alert("계정삭제 실패! TODOLIST 모두 삭제 후 다시 시도하세요");
+                    alert("TODOLIST 모두 삭제하고," +"\n"+ "다시 회원 탈퇴를 진행해주세요.");
                 }
 
             });

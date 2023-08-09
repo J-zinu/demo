@@ -9,7 +9,7 @@ public interface MemberMapper {
 
     int register(MemberDTO memberDTO);
 
-    MemberDTO findById(String user_id);
+    MemberDTO id_check(String user_id);
     MemberDTO login (MemberDTO memberDTO);
 
 

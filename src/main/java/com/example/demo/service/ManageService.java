@@ -34,7 +34,7 @@ public class ManageService {
         try {
             int user_Delete = manageMapper.deleteUser(memberDTO);
             if (user_Delete <= 0) {
-                throw new RuntimeException("User deletion failed");
+                throw new RuntimeException("계정 삭제에 실패하였습니다.");
             }
             return user_Delete;
         } catch (Exception e) {
