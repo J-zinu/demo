@@ -87,7 +87,7 @@ public class TodoListController {
         return response;
     }
 
-// @RequestParam("todo_num")  안써도 인식이됨
+    // @RequestParam("todo_num")  안써도 인식이됨
     @PutMapping("/update")
     @ResponseBody
     public Map<String, Object> TodoListUpdate(int todo_num, String new_todo, HttpSession session){

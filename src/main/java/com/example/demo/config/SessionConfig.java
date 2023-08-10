@@ -16,7 +16,7 @@ public class SessionConfig implements HttpSessionListener {
     private static final Map<String, HttpSession> sessions = new ConcurrentHashMap<>();
 
     // 중복로그인 지우기
-    public synchronized static String getSessionidCheck(String type, String compareId, HttpSession currentSession) {
+    public synchronized static String getSessionIdCheck(String type, String compareId, HttpSession currentSession) {
         String existingSessionId = null;
 
         for (Map.Entry<String, HttpSession> entry : sessions.entrySet()) {
@@ -57,6 +57,7 @@ public class SessionConfig implements HttpSessionListener {
         if (sessions.get(se.getSession().getId()) != null) {
             sessions.get(se.getSession().getId()).invalidate();
             sessions.remove(se.getSession().getId());
+            System.out.println(se);
         }
     }
 }

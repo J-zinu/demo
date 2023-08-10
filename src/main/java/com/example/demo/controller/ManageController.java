@@ -15,9 +15,11 @@ import java.util.Map;
 @RequestMapping("/manage") //개별 핸들러 메소드가 같은 URL 패턴에 매핑된다.
 public class ManageController {
     private final ManageService manageService;
+    private final HttpSession session;
 
-    public ManageController(ManageService manageService) {
+    public ManageController(ManageService manageService, HttpSession session) {
         this.manageService = manageService;
+        this.session = session;
     }
     @GetMapping
     public ModelAndView managePage(HttpSession session) {
@@ -66,15 +68,19 @@ public class ManageController {
     public Map<String, Object> deleteUser(@RequestBody MemberDTO memberDTO){
         int user_Delete =  manageService.deleteUser(memberDTO);
         Map<String, Object> result = new HashMap<>();
+
         if(user_Delete> 0) {
+            session.invalidate();
             result.put("message", "계정이 성공적으로 삭제되었습니다!");
             result.put("status", "success");
         }
         else if (user_Delete == 0){
+            session.invalidate();
             result.put("message", "이미 회원탈퇴가 진행되었거나," +"\n"+"TODOLIST 모두 삭제하고," +"\n"+ "다시 회원 탈퇴를 진행해주세요.");
             result.put("status", "error");
         }
         else {
+            session.invalidate();
             result.put("message", "이미 회원탈퇴가 진행되었거나," +"\n"+"TODOLIST 모두 삭제하고," +"\n"+ "다시 회원 탈퇴를 진행해주세요.");
             result.put("status", "fail");
         }

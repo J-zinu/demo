@@ -147,6 +147,7 @@ function viewCreateContent(formData) {
         },
         error: function(e) {
             alert("Create Connect Error");
+            window.location.href = "/login";
         }
     });
 }
@@ -165,6 +166,7 @@ function viewContent() {
         },
         error: function(e) {
             alert("read error");
+            window.location.href = "/login";
         }
     });
 }
@@ -183,6 +185,7 @@ function viewUpdateContent(numData, todoData) {
         },
         error: function(e) {
             alert("update error");
+            window.location.href = "/login";
         }
     });
 }
@@ -198,6 +201,7 @@ function viewDeleteContent(numData) {
         },
         error: function(e) {
             alert("delete error");
+            window.location.href = "/login";
         }
     });
 }
@@ -222,6 +226,7 @@ function viewSearchContent(searchData) {
         },
         error: function(e) {
             alert("search error");
+            window.location.href = "/login";
         }
     });
 }

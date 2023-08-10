@@ -49,6 +49,7 @@ const register = (event) => {
         },
         error: function (err){
             console.log("요청실패!", err);
+
         }
     })
 }
