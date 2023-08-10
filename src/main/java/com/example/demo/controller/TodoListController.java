@@ -63,14 +63,16 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListCreate(TodoListDTO form, HttpSession session){
         String user_id = (String) session.getAttribute("user_id");
-        Map<String, Object> response = todoListService.createTodoList(form);
+        Map<String, Object> response = new HashMap<>();
 
-        if((Boolean) response.get("createBool")){
+        if(user_id != null){
+            response.putAll(todoListService.createTodoList(form));
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
+            response.put("status", "success");
             response.put("data", findAllData);
         }
         else {
-            response.put("error", "생성 오류");
+            response.put("status", "아이디없음");
         }
         return response;
     }
@@ -98,12 +100,14 @@ public class TodoListController {
         System.out.println("new_todo = " + new_todo);
 
         // 서비스 검사
-        if(todoListService.updateTodoList(todo_num, new_todo , user_id) == 1){
+        if(user_id != null){
+            todoListService.updateTodoList(todo_num, new_todo , user_id);
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
+            response.put("status", "success");
             response.put("data", findAllData);
         }
         else {
-            response.put("error", "UpdateController Error!!");
+            response.put("status", "아이디없음");
         }
         return response;
     }
@@ -115,12 +119,14 @@ public class TodoListController {
         Map<String, Object> response = new HashMap<>();
 
         // 서비스 검사
-        if(todoListService.deleteTodoList(todo_num, user_id)){
+        if(user_id != null){
+            todoListService.deleteTodoList(todo_num, user_id);
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
+            response.put("status", "success");
             response.put("data", findAllData);
         }
         else {
-            response.put("error", "DeleteController Error!!");
+            response.put("status", "아이디없음");
         }
         return response;
     }
@@ -129,11 +135,14 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListSearch(HttpSession session, String todo_search) {
         String user_id = (String) session.getAttribute("user_id");
+        Map<String, Object> response = new HashMap<>();
 
-        Map<String, Object> response = todoListService.searchTodoList(user_id,todo_search);
-
-        if((boolean) response.get("serviceBool")){
-            response.put("controllerBool", true);
+        if(user_id != null){
+            todoListService.searchTodoList(user_id,todo_search);
+            response.put("status", "success");
+        }
+        else{
+            response.put("status", "아이디없음");
         }
 
         return response;

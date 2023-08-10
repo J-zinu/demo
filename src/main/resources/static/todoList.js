@@ -143,11 +143,17 @@ function viewCreateContent(formData) {
         type: "POST",
         data: formData,
         success: function(data) {
-            viewTodoListContent(data.data);
+            if(data.status !== "success"){
+                alert(data.status);
+                location.href = '/login';
+            }
+            else {
+                viewTodoListContent(data.data);
+            }
         },
         error: function(e) {
             alert("Create Connect Error");
-            window.location.href = "/login";
+            location.href = '/login';
         }
     });
 }
@@ -166,7 +172,6 @@ function viewContent() {
         },
         error: function(e) {
             alert("read error");
-            window.location.href = "/login";
         }
     });
 }
@@ -180,12 +185,17 @@ function viewUpdateContent(numData, todoData) {
         type: "PUT",
         data: {new_todo: todoData, todo_num: numData},
         success: function(data) {
-            console.log("연결성공!")
-            // viewTodoListContent(data.data);
+            if(data.status !== "success"){
+                alert(data.status);
+                location.href = '/login';
+            }
+            else {
+                viewTodoListContent(data.data);
+            }
         },
         error: function(e) {
             alert("update error");
-            window.location.href = "/login";
+            location.href = '/login';
         }
     });
 }
@@ -197,11 +207,17 @@ function viewDeleteContent(numData) {
         type: "DELETE",
         data: {todo_num: numData},
         success: function(data) {
-            viewTodoListContent(data.data);
+            if(data.status !== "success"){
+                alert(data.status);
+                location.href = '/login';
+            }
+            else {
+                viewTodoListContent(data.data);
+            }
         },
         error: function(e) {
             alert("delete error");
-            window.location.href = "/login";
+            location.href = '/login';
         }
     });
 }
@@ -214,19 +230,17 @@ function viewSearchContent(searchData) {
         data: {todo_search: searchData},
         success: function(data) {
             console.log(data);
-            if(data.serviceBool === true && data.controllerBool === true){
-                console.log("상태확인 완료");
-                viewTodoListContent(data.data);
+            if(data.status !== "success"){
+                alert(data.status);
+                location.href = '/login';
             }
             else{
-                console.log("상태이상 발견");
-                alert("알 수 없는 오류입니다.");
-                location.href = '/todoList';
+                viewTodoListContent(data.data);
             }
         },
         error: function(e) {
             alert("search error");
-            window.location.href = "/login";
+            location.href = '/login';
         }
     });
 }
