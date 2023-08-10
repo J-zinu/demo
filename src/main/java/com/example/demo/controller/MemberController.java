@@ -48,16 +48,5 @@ public class  MemberController {
         return checkResult;
     }
 
-    @GetMapping("/logout")
-    @ResponseBody
-    public Map<String, Object> logout(HttpSession session) {
-        session.invalidate();
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", "success");
-        response.put("message", "로그아웃되었습니다.");
-
-        return response;
-    }
 }
 
