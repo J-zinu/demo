@@ -21,6 +21,7 @@ public class ManageService {
 //    }
 
 
+    @Transactional
     public int updateUser(MemberDTO memberDTO) {
         int pw_upDate = manageMapper.updateUser(memberDTO);
         if (pw_upDate > 0) {

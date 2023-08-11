@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("registerForm").addEventListener("submit", register);
 });
 
+
 const id_Check = () => {
     const input_id = document.getElementById("username").value;
     const checkResult = document.getElementById("checkResult");
@@ -57,6 +58,7 @@ const register = (event) => {
         }
     })
 }
+
 
 
 //

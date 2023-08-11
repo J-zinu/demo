@@ -5,7 +5,7 @@ import com.example.demo.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.stereotype.Service;
-import javax.servlet.http.HttpSession;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor // final 멤버 변수를 자동으로 생성 (생성자 주입) (lombok)
@@ -18,10 +18,12 @@ public class MemberService {
     //@RequiredArgsConstructor 사용하는 것과 같습니다.
 
     public int register(MemberDTO memberDTO){
+
         MemberDTO idCheckResult = memberMapper.id_check(memberDTO.getUser_id()); //getUser_id()는 Lombok이 자동적으로 생성하므로 메소드를 적을 필요가 없음
         if(idCheckResult != null){ //id를 확인할 때 null 이 아니므로 이미 존재하는 경우 입니다. 그래서 -1을 반환한다.
             return -1;
         }
+
         else{ //특정 user_id가 존재하지 않으므로 MemberDTO 객체를 반환합니다.
             return memberMapper.register(memberDTO);
         }
