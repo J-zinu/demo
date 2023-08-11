@@ -1,4 +1,4 @@
-const id_Check = () => {
+    const id_Check = () => {
     const input_id = document.getElementById("username").value;
     const checkResult = document.getElementById("checkResult");
     console.log("입력한아이디", input_id);
