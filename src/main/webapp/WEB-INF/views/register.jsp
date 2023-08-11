@@ -2,11 +2,12 @@
 <html>
 <head>
     <title>Register</title>
+    <script src="register.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"
             integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous">
         // jquery 라이브러리를 사용하기 위해 추가
     </script>
-    <script src="register.js"></script>
+
     <link rel="stylesheet" type="text/css" href="register.css">
 </head>
 <body>
@@ -29,9 +30,9 @@
     </div>
 </form>
 
-<script>
-    document.getElementById("registerForm").addEventListener("submit", register); // Add this script here
-</script>
+<%--<script>--%>
+<%--    document.getElementById("registerForm").addEventListener("submit", register); // Add this script here--%>
+<%--</script>--%>
 
 </body>
 
