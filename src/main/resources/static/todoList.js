@@ -151,7 +151,7 @@ function viewCreateContent(formData) {
                 viewTodoListContent(data.data);
             }
         },
-        error: function(e) {
+        error: function(e) {ㅡ
             alert("Create Connect Error");
             location.href = '/login';
         }

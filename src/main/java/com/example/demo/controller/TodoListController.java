@@ -47,10 +47,10 @@ public class TodoListController {
         ModelAndView mv = new ModelAndView();
 
         // 로그인 유효성 검사
-        if(user_id == null){
+        if (user_id == null) {
             mv.setViewName("login"); // 뷰의 이름
             mv.addObject("test", "반환값"); // 뷰로 보낼 데이터 값
-        }else{
+        } else {
             mv.setViewName("todoList"); // 뷰의 이름
             mv.addObject("user_id", user_id);
             // mv.addObject("변수 이름", "데이터 값"); 형태를 사용한 메소드로 데이터를보냄
@@ -61,17 +61,16 @@ public class TodoListController {
 
     @PostMapping("/create")
     @ResponseBody
-    public Map<String, Object> TodoListCreate(TodoListDTO form, HttpSession session){
+    public Map<String, Object> TodoListCreate(TodoListDTO form, HttpSession session) {
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> response = new HashMap<>();
 
-        if(user_id != null){
+        if (user_id != null) {
             response.putAll(todoListService.createTodoList(form));
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("status", "success");
             response.put("data", findAllData);
-        }
-        else {
+        } else {
             response.put("status", "아이디없음");
         }
         return response;
@@ -79,7 +78,7 @@ public class TodoListController {
 
     @GetMapping("/read")
     @ResponseBody
-    public Map<String, Object> TodoListGet(HttpSession session){
+    public Map<String, Object> TodoListGet(HttpSession session) {
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> response = new HashMap<>();
 
@@ -92,7 +91,7 @@ public class TodoListController {
     // @RequestParam("todo_num")  안써도 인식이됨
     @PutMapping("/update")
     @ResponseBody
-    public Map<String, Object> TodoListUpdate(int todo_num, String new_todo, HttpSession session){
+    public Map<String, Object> TodoListUpdate(int todo_num, String new_todo, HttpSession session) {
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> response = new HashMap<>();
 
@@ -100,13 +99,12 @@ public class TodoListController {
         System.out.println("new_todo = " + new_todo);
 
         // 서비스 검사
-        if(user_id != null){
-            todoListService.updateTodoList(todo_num, new_todo , user_id);
+        if (user_id != null) {
+            todoListService.updateTodoList(todo_num, new_todo, user_id);
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("status", "success");
             response.put("data", findAllData);
-        }
-        else {
+        } else {
             response.put("status", "아이디없음");
         }
         return response;
@@ -114,18 +112,17 @@ public class TodoListController {
 
     @DeleteMapping("/delete")
     @ResponseBody
-    public Map<String, Object> TodoListDelete(HttpSession session, int todo_num){
+    public Map<String, Object> TodoListDelete(HttpSession session, int todo_num) {
         String user_id = (String) session.getAttribute("user_id");
         Map<String, Object> response = new HashMap<>();
 
         // 서비스 검사
-        if(user_id != null){
+        if (user_id != null) {
             todoListService.deleteTodoList(todo_num, user_id);
             List<TodoListDTO> findAllData = todoListService.findAllList(user_id);
             response.put("status", "success");
             response.put("data", findAllData);
-        }
-        else {
+        } else {
             response.put("status", "아이디없음");
         }
         return response;
@@ -135,19 +132,20 @@ public class TodoListController {
     @ResponseBody
     public Map<String, Object> TodoListSearch(HttpSession session, String todo_search) {
         String user_id = (String) session.getAttribute("user_id");
-        Map<String, Object> response = new HashMap<>();
+//        Map<String, Object> response = new HashMap<>();
+        Map<String, Object> response = todoListService.searchTodoList(user_id, todo_search);
 
-        if(user_id != null){
-            todoListService.searchTodoList(user_id,todo_search);
-            response.put("status", "success");
+        if ((boolean) response.get("serviceBool")) {
+            response.put("controllerBool", true);
+            if (user_id != null) {
+                todoListService.searchTodoList(user_id, todo_search);
+                response.put("status", "success");
+            } else {
+                response.put("status", "아이디없음");
+            }
         }
-        else{
-            response.put("status", "아이디없음");
-        }
-
         return response;
     }
-
 }
 
 // 레파지토리에서 작업했던 부분 (소스코드는 크게 바뀌지 않았음)
