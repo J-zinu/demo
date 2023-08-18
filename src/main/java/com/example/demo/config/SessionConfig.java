@@ -18,7 +18,6 @@ public class SessionConfig implements HttpSessionListener {
     // 중복로그인 지우기
     public synchronized static String getSessionIdCheck(String type, String compareId, HttpSession currentSession) {
         String existingSessionId = null;
-
         for (Map.Entry<String, HttpSession> entry : sessions.entrySet()) {
             HttpSession hs = entry.getValue();
 
@@ -29,11 +28,9 @@ public class SessionConfig implements HttpSessionListener {
                 }
             }
         }
-
         if (existingSessionId != null) {
             removeSessionForDoubleLogin(existingSessionId);
         }
-
         return existingSessionId;
     }
 

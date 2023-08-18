@@ -10,12 +10,12 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
-    public ModelAndView test() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login"); // 뷰의 이름 설정
-        return modelAndView;
-    }
+        @GetMapping("/")
+        public ModelAndView test() {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("login"); // 뷰의 이름 설정
+            return modelAndView;
+        }
 
     //String으로 반환하면 뷰의 이름을 반환한다.
     //그러나 이렇게 사용하면 ajax를 사용할 수 없다.

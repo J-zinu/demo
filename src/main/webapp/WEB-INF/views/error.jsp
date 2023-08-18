@@ -12,7 +12,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="error.js"></script>
     <title>Title</title>
-
 </head>
 <body>
     <h1>ERROR 잘못된 경로입니다.</h1>
