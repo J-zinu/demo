@@ -26,7 +26,6 @@ public class LoginController {
         login_url.setViewName("login");
         return login_url;
     }
-
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Map<String, Object>login(@ModelAttribute MemberDTO memberDTO, HttpSession session) {
