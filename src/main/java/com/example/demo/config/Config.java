@@ -21,7 +21,7 @@ public class Config implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/**/*.do")
-                .excludePathPatterns("/login.do");
+                .addPathPatterns("/**/")
+                .excludePathPatterns("/login");
     }
 }
